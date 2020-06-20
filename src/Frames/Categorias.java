@@ -1,26 +1,52 @@
 package Frames;
 
+import ClassDAO.CategoriaDAO;
 import ClassDAO.ProductoDAO;
+import ClassDAO.SubcategoriaDAO;
+import ClassVO.CategoriaVO;
 import ClassVO.ProductoVO;
+import ClassVO.SubcategoriaVO;
+import Tables.TablaCategoria;
 import Tables.TablaProducto;
+import Tables.TablaSubcategoria;
 import com.sun.awt.AWTUtilities;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class Categorias extends javax.swing.JFrame {
 
-    private void clean() {
-        txtSubCat.setText("");
+    private void clean(){
+        txtSub.setText("");
+        comboCategoria.setSelectedIndex(0);
+    }
+    
+    private void cargarCategorias() {
+        try {
+            JComboBox combo = new JComboBox();
+            combo.removeAllItems();
+            combo.addItem("SELECCIONE UNA OPCIÓN");
+            for (CategoriaVO categoria : CategoriaDAO.listar()) {
+                combo.addItem(categoria.getNombre() + "");
+            }
+            comboCategoria.setModel(combo.getModel());
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     private void cargarTabla() {
-        TablaProducto.cargarProductos(tDatos);
+        TablaCategoria.cargarCategoria(tCategorias);
+    }
+
+    private void cargarSubcategoria(CategoriaVO categoria) {
+        TablaSubcategoria.cargarCategorias(tSubcategorias, categoria.getId());
     }
 
     public Categorias() {
@@ -29,6 +55,7 @@ public class Categorias extends javax.swing.JFrame {
         Shape forma = new RoundRectangle2D.Double(0, 0, getBounds().width, getBounds().height, 20, 20);
         AWTUtilities.setWindowShape(this, forma);
         cargarTabla();
+        cargarCategorias();
     }
 
     @SuppressWarnings("unchecked")
@@ -45,15 +72,16 @@ public class Categorias extends javax.swing.JFrame {
         btnIngresar3 = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tDatos = new javax.swing.JTable();
+        tCategorias = new javax.swing.JTable();
         btnIngresar4 = new javax.swing.JButton();
-        txtSubCat = new javax.swing.JTextField();
+        txtSub = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tDatos1 = new javax.swing.JTable();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        tSubcategorias = new javax.swing.JTable();
+        comboCategoria = new javax.swing.JComboBox<>();
+        btnIngresar5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -105,7 +133,7 @@ public class Categorias extends javax.swing.JFrame {
         btnIngresar3.setBackground(new java.awt.Color(1, 50, 67));
         btnIngresar3.setFont(new java.awt.Font("Gotham Extra Light", 0, 18)); // NOI18N
         btnIngresar3.setForeground(new java.awt.Color(1, 50, 67));
-        btnIngresar3.setText("Eliminar");
+        btnIngresar3.setText("Limpiar");
         btnIngresar3.setBorderPainted(false);
         btnIngresar3.setContentAreaFilled(false);
         btnIngresar3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -122,22 +150,22 @@ public class Categorias extends javax.swing.JFrame {
                 btnIngresar3KeyPressed(evt);
             }
         });
-        jPanel1.add(btnIngresar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 110, 40));
+        jPanel1.add(btnIngresar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 400, 110, 40));
 
         jLabel17.setBackground(new java.awt.Color(103, 128, 159));
         jLabel17.setFont(new java.awt.Font("Gotham Thin", 0, 18)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(103, 128, 159));
         jLabel17.setText("Categorías");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, -1, -1));
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, -1, -1));
 
-        tDatos.addMouseListener(new java.awt.event.MouseAdapter() {
+        tCategorias.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tDatosMouseClicked(evt);
+                tCategoriasMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tDatos);
+        jScrollPane1.setViewportView(tCategorias);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 230, 340));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, 230, 360));
 
         btnIngresar4.setBackground(new java.awt.Color(1, 50, 67));
         btnIngresar4.setFont(new java.awt.Font("Gotham Extra Light", 0, 18)); // NOI18N
@@ -161,11 +189,11 @@ public class Categorias extends javax.swing.JFrame {
         });
         jPanel1.add(btnIngresar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 360, 110, 40));
 
-        txtSubCat.setBackground(new java.awt.Color(238, 238, 238));
-        txtSubCat.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
-        txtSubCat.setForeground(new java.awt.Color(1, 50, 67));
-        txtSubCat.setBorder(null);
-        jPanel1.add(txtSubCat, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, 140, 30));
+        txtSub.setBackground(new java.awt.Color(238, 238, 238));
+        txtSub.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
+        txtSub.setForeground(new java.awt.Color(1, 50, 67));
+        txtSub.setBorder(null);
+        jPanel1.add(txtSub, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, 140, 30));
 
         jButton1.setText("Nueva");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -173,7 +201,7 @@ public class Categorias extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, -1, -1));
 
         jLabel1.setText("Atrás");
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -188,23 +216,45 @@ public class Categorias extends javax.swing.JFrame {
         jLabel18.setFont(new java.awt.Font("Gotham Thin", 0, 18)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(103, 128, 159));
         jLabel18.setText("Subcategorias");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 30, -1, -1));
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 0, -1, -1));
 
-        tDatos1.addMouseListener(new java.awt.event.MouseAdapter() {
+        tSubcategorias.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tDatos1MouseClicked(evt);
+                tSubcategoriasMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(tDatos1);
+        jScrollPane2.setViewportView(tSubcategorias);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 60, 230, 340));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 30, 230, 360));
 
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        comboCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                comboCategoriaActionPerformed(evt);
             }
         });
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 170, 30));
+        jPanel1.add(comboCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 190, 30));
+
+        btnIngresar5.setBackground(new java.awt.Color(1, 50, 67));
+        btnIngresar5.setFont(new java.awt.Font("Gotham Extra Light", 0, 18)); // NOI18N
+        btnIngresar5.setForeground(new java.awt.Color(1, 50, 67));
+        btnIngresar5.setText("Eliminar");
+        btnIngresar5.setBorderPainted(false);
+        btnIngresar5.setContentAreaFilled(false);
+        btnIngresar5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnIngresar5.setFocusPainted(false);
+        btnIngresar5.setRequestFocusEnabled(false);
+        btnIngresar5.setVerifyInputWhenFocusTarget(false);
+        btnIngresar5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresar5ActionPerformed(evt);
+            }
+        });
+        btnIngresar5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnIngresar5KeyPressed(evt);
+            }
+        });
+        jPanel1.add(btnIngresar5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 110, 40));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 800, 460));
 
@@ -237,14 +287,32 @@ public class Categorias extends javax.swing.JFrame {
 
     private void btnIngresar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresar3ActionPerformed
         // TODO add your handling code here:
-
+        clean();
     }//GEN-LAST:event_btnIngresar3ActionPerformed
 
     private void btnIngresar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresar4ActionPerformed
         // TODO add your handling code here:
-        //guardar();
+        if (comboCategoria.getSelectedIndex() != 0 && txtSub.getText().length() != 0) {
+            CategoriaVO seleccionada = buscarSeleccionada(); //Busca en bd categoria 
+            SubcategoriaVO subcategoria = obtenerDatos(seleccionada);
+            if (insertar(subcategoria) > 0) {
+                JOptionPane.showMessageDialog(this, "Guardado correctamente");
+                cargarSubcategoria(seleccionada);
+                clean();
+            }
+        }
     }//GEN-LAST:event_btnIngresar4ActionPerformed
-/*
+
+    private int insertar(SubcategoriaVO subcategoria) {
+        return SubcategoriaDAO.insertar(subcategoria);
+    }
+
+    private CategoriaVO buscarSeleccionada() {
+        //System.out.println(comboCategoria.getSelectedItem().toString());
+        return CategoriaDAO.encontrar(comboCategoria.getSelectedItem().toString());
+    }
+
+    /*
     private void guardar() {
         int mensaje = registrar();
         if (mensaje > 0) {
@@ -262,20 +330,9 @@ public class Categorias extends javax.swing.JFrame {
         txtSubCat.setText(producto.getPrecio() + "");
         
     }
-    
-    private int registrar() {
-        if (datosValidos()) {
-            ProductoVO producto = obtenerDatos();
-            return (ProductoDAO.insertar(producto));
-        }
-        return 0;
+     */
 
-    }
-
-    private boolean datosValidos() {
-        return fotoValida() && camposLlenados() && precioIsDouble();
-    }
-
+ /*
     private boolean fotoValida() {
         try {
             File ruta = new File(txtImagen.getText());
@@ -301,23 +358,34 @@ public class Categorias extends javax.swing.JFrame {
         return false;
     }
 
-    */
+     */
     private void btnIngresar4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnIngresar4KeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnIngresar4KeyPressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-/*
-        JFileChooser j = new JFileChooser();
-        FileNameExtensionFilter fil = new FileNameExtensionFilter("JPG, PNG & GIF", "jpg", "png", "gif");
-        j.setFileFilter(fil);
+        CategoriaVO auxiliar = null;
+        String nuevo = JOptionPane.showInputDialog(
+                this,
+                "Ingrese el nombre de la categoría a registrar",
+                "Nueva categoría",
+                JOptionPane.INFORMATION_MESSAGE
+        );
 
-        int s = j.showOpenDialog(this);
-        if (s == JFileChooser.APPROVE_OPTION) {
-            String ruta = j.getSelectedFile().getAbsolutePath();
-            txtImagen.setText(ruta);
-        }*/
+        if (nuevo != null && nuevo.length() != 0) {
+            auxiliar = new CategoriaVO();
+            auxiliar.setId(1);
+            auxiliar.setNombre(nuevo);
+            if (!(CategoriaDAO.insertar(auxiliar) > 0)) {
+                JOptionPane.showMessageDialog(this, "Ha ocurrido un error");
+            } else {
+                cargarCategorias();
+                cargarTabla();
+            }
+        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
+
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:
@@ -326,43 +394,47 @@ public class Categorias extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jLabel1MouseClicked
 
-    private void tDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tDatosMouseClicked
+    private void tCategoriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tCategoriasMouseClicked
         // TODO add your handling code here:
-        obtenerElementoDePosicion(tDatos.getSelectedRow());
-    }//GEN-LAST:event_tDatosMouseClicked
+        CategoriaVO seleccionada = obtenerElementoDePosicion(tCategorias.getSelectedRow());
+        cargarSubcategoria(seleccionada);
+        comboCategoria.setSelectedItem(seleccionada.getNombre());
+    }//GEN-LAST:event_tCategoriasMouseClicked
 
-    private void tDatos1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tDatos1MouseClicked
+    private void tSubcategoriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tSubcategoriasMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_tDatos1MouseClicked
+        int fila = tSubcategorias.getSelectedRow();
+        txtSub.setText(tSubcategorias.getValueAt(fila, 1).toString());
+        
+    }//GEN-LAST:event_tSubcategoriasMouseClicked
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void comboCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCategoriaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_comboCategoriaActionPerformed
 
-    private void obtenerElementoDePosicion(int fila){
-        ProductoVO producto = new ProductoVO();
-        producto.setDescripcion(tDatos.getValueAt(fila, 0).toString());
-        producto.setPrecio(Double.parseDouble(tDatos.getValueAt(fila, 1).toString()));
+    private void btnIngresar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresar5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnIngresar5ActionPerformed
+
+    private void btnIngresar5KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnIngresar5KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnIngresar5KeyPressed
+
+    private CategoriaVO obtenerElementoDePosicion(int fila) {
+        CategoriaVO categoriaElemento = new CategoriaVO();
+        categoriaElemento.setId(Integer.parseInt(tCategorias.getValueAt(fila, 0).toString()));
+        categoriaElemento.setNombre(tCategorias.getValueAt(fila, 1).toString());
         //txtRuta.setText(tColonias.getValueAt(fila, 2).toString())
+        return categoriaElemento;
+    }
 
+    private SubcategoriaVO obtenerDatos(CategoriaVO categoria) {
+        SubcategoriaVO subcategoria = new SubcategoriaVO();
+        subcategoria.setIdCategoria(categoria.getId());
+        subcategoria.setNombre(txtSub.getText());
+        return subcategoria;
     }
-    /*
-    private ProductoVO obtenerDatos() {
-        ProductoVO producto = new ProductoVO();
-        producto.setDescripcion(txtDescripcion.getText());
-        producto.setPrecio(Double.parseDouble(txtSubCat.getText()));
-        try {
-            File ruta = new File(txtImagen.getText());
-            byte[] icono = new byte[(int) ruta.length()];
-            InputStream input = new FileInputStream(ruta);
-            input.read(icono);
-            producto.setImagen(icono);
-        } catch (Exception ex) {
-            producto.setImagen(null);
-        }
-        return producto;
-    }
-*/
+
     /**
      * @param args the command line arguments
      */
@@ -404,8 +476,9 @@ public class Categorias extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIngresar3;
     private javax.swing.JButton btnIngresar4;
+    private javax.swing.JButton btnIngresar5;
+    private javax.swing.JComboBox<String> comboCategoria;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
@@ -418,8 +491,8 @@ public class Categorias extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator18;
-    private javax.swing.JTable tDatos;
-    private javax.swing.JTable tDatos1;
-    private javax.swing.JTextField txtSubCat;
+    private javax.swing.JTable tCategorias;
+    private javax.swing.JTable tSubcategorias;
+    private javax.swing.JTextField txtSub;
     // End of variables declaration//GEN-END:variables
 }

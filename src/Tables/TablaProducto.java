@@ -57,7 +57,7 @@ public class TablaProducto {
             columnModel.getColumn(0).setPreferredWidth(20);
             columnModel.getColumn(1).setPreferredWidth(200);
             columnModel.getColumn(2).setPreferredWidth(50);
-            columnModel.getColumn(2).setPreferredWidth(60);
+            columnModel.getColumn(3).setPreferredWidth(60);
         }
     }
 }
