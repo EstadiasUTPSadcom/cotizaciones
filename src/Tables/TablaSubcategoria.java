@@ -7,10 +7,10 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
-
 public class TablaSubcategoria {
-    
-    public static void cargarCategorias(JTable tabla) {
+
+
+    public static void cargarSubcategorias(JTable tabla, int idCategoria) {
 
         tabla.setDefaultRenderer(Object.class, new Render());
         DefaultTableModel dt = new DefaultTableModel() {
@@ -19,42 +19,7 @@ public class TablaSubcategoria {
                 return false;
             }
         };
-        
-        dt.addColumn("Id");
-        dt.addColumn("Categoria");
-        dt.addColumn("Nombre");
 
-        SubcategoriaVO subcategoria = new SubcategoriaVO();
-        ArrayList<SubcategoriaVO> list = SubcategoriaDAO.listar();
-
-        if (list.size() > 0) {
-            for (int i = 0; i < list.size(); i++) {
-                Object fila[] = new Object[5];
-                subcategoria = list.get(i);
-                fila[0] = subcategoria.getId();
-                fila[1] = subcategoria.getIdCategoria();
-                fila[2] = subcategoria.getNombre();
-                dt.addRow(fila);
-            }
-            tabla.setModel(dt);
-            tabla.setRowHeight(60);
-            TableColumnModel columnModel = tabla.getColumnModel();
-            columnModel.getColumn(0).setPreferredWidth(20);
-            columnModel.getColumn(1).setPreferredWidth(20);
-            columnModel.getColumn(2).setPreferredWidth(50);
-        }
-    }
- 
-    public static void cargarCategorias(JTable tabla, int idCategoria) {
-
-        tabla.setDefaultRenderer(Object.class, new Render());
-        DefaultTableModel dt = new DefaultTableModel() {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        };
-        
         dt.addColumn("Id");
         dt.addColumn("Nombre");
 
@@ -63,7 +28,7 @@ public class TablaSubcategoria {
 
         if (list.size() > 0) {
             for (int i = 0; i < list.size(); i++) {
-                Object fila[] = new Object[5];
+                Object fila[] = new Object[2];
                 subcategoria = list.get(i);
                 fila[0] = subcategoria.getId();
                 fila[1] = subcategoria.getNombre();
@@ -72,9 +37,19 @@ public class TablaSubcategoria {
             tabla.setModel(dt);
             tabla.setRowHeight(60);
             TableColumnModel columnModel = tabla.getColumnModel();
+            columnModel.getColumn(0).setPreferredWidth(50);
+            columnModel.getColumn(1).setPreferredWidth(200);
+        } else {
+            Object fila[] = new Object[2];
+            fila[0] = "";
+            fila[1] = "";
+            dt.addRow(fila);
+             tabla.setModel(dt);
+            tabla.setRowHeight(60);
+            TableColumnModel columnModel = tabla.getColumnModel();
             columnModel.getColumn(0).setPreferredWidth(20);
             columnModel.getColumn(1).setPreferredWidth(200);
         }
     }
-    
+
 }

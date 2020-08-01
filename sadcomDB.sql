@@ -13,7 +13,8 @@ create table usuario(
 create table categoria(
 	id int not null auto_increment,
     nombre varchar(30) not null,
-    constraint pk_id primary key(id)
+    constraint pk_id primary key(id),
+    constraint uq_nombre unique (nombre)
 );
 
 insert into categoria(nombre) values ("CAMARAS");
@@ -23,7 +24,8 @@ create table subcategoria(
     id_categoria int not null,
     nombre varchar(50) not null,
     constraint pk_id primary key(id),
-    constraint fk_id_categoria_subcategoria foreign key (id_categoria) references categoria (id)
+    constraint fk_id_categoria_subcategoria foreign key (id_categoria) references categoria (id) on delete cascade,
+    constraint uq_id_cat_nombre unique (id_categoria, nombre)
 );
  
 insert into subcategoria values(null, 1, "TIPO DOMO");
@@ -35,7 +37,7 @@ create table producto(
     imagen blob, 
     id_subcategoria int not null,
 	constraint pk_id primary key(id), 
-    constraint fk_id_subcategoria_producto foreign key(id_subcategoria) references subcategoria(id)
+    constraint fk_id_subcategoria_producto foreign key(id_subcategoria) references subcategoria(id) on delete cascade
 );
 
 insert into producto values(null, "Teclado", 3600, null, 1);

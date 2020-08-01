@@ -22,11 +22,14 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class Categorias extends javax.swing.JFrame {
 
-    private void clean(){
+    private void clean() {
+        CategoriaVO categoria = new CategoriaVO();
+        categoria.setId(-1);
         txtSub.setText("");
         comboCategoria.setSelectedIndex(0);
+        cargarSubcategoria(categoria);
     }
-    
+
     private void cargarCategorias() {
         try {
             JComboBox combo = new JComboBox();
@@ -46,7 +49,7 @@ public class Categorias extends javax.swing.JFrame {
     }
 
     private void cargarSubcategoria(CategoriaVO categoria) {
-        TablaSubcategoria.cargarCategorias(tSubcategorias, categoria.getId());
+        TablaSubcategoria.cargarSubcategorias(tSubcategorias, categoria.getId());
     }
 
     public Categorias() {
@@ -399,22 +402,84 @@ public class Categorias extends javax.swing.JFrame {
         CategoriaVO seleccionada = obtenerElementoDePosicion(tCategorias.getSelectedRow());
         cargarSubcategoria(seleccionada);
         comboCategoria.setSelectedItem(seleccionada.getNombre());
+        txtSub.setText("");
     }//GEN-LAST:event_tCategoriasMouseClicked
 
     private void tSubcategoriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tSubcategoriasMouseClicked
         // TODO add your handling code here:
         int fila = tSubcategorias.getSelectedRow();
         txtSub.setText(tSubcategorias.getValueAt(fila, 1).toString());
-        
+
     }//GEN-LAST:event_tSubcategoriasMouseClicked
 
     private void comboCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCategoriaActionPerformed
         // TODO add your handling code here:
+        if (comboCategoria.getSelectedIndex() != 0) {
+            CategoriaVO seleccionada = CategoriaDAO.encontrar(comboCategoria.getSelectedItem() + "");
+            cargarSubcategoria(seleccionada);
+            txtSub.setText("");
+        } else {
+            CategoriaVO temp = new CategoriaVO();
+            temp.setId(-1);
+            cargarSubcategoria(temp);
+        }
     }//GEN-LAST:event_comboCategoriaActionPerformed
 
     private void btnIngresar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresar5ActionPerformed
         // TODO add your handling code here:
+        if (comboCategoria.getSelectedIndex() != 0 && txtSub.getText().length() != 0) {
+            SubcategoriaVO subcategoria = encontrarSubcategoria(CategoriaDAO.encontrar(comboCategoria.getSelectedItem() + "").getId(), txtSub.getText());
+            if (subcategoria.getId() != -1) {
+                eliminarSubcategoria(subcategoria);
+            }
+            else{
+                txtSub.setText("");
+            }
+        } else if (comboCategoria.getSelectedIndex() != 0 && txtSub.getText().length() == 0) {
+            eliminarCategoria();
+        }
     }//GEN-LAST:event_btnIngresar5ActionPerformed
+
+    private void eliminarSubcategoria(SubcategoriaVO subcategoria) {
+        if (deseaEliminarSubcategoria() == 0) {
+            CategoriaVO cat = new CategoriaVO();
+            cat.setId(subcategoria.getIdCategoria());
+            if (SubcategoriaDAO.eliminar(subcategoria) > 0) {
+                JOptionPane.showMessageDialog(this, "La subcategoría se ha eliminado correctamente");
+                clean();
+            } else {
+                JOptionPane.showMessageDialog(this, "No se ha podido eliminar subcategoría");
+            }
+
+        }
+    }
+
+    private SubcategoriaVO encontrarSubcategoria(int idCategoria, String nombre) {
+        return SubcategoriaDAO.encontrar(idCategoria, nombre);
+    }
+
+    private void eliminarCategoria() {
+        if (deseaEliminarCategoria() == 0) {
+            CategoriaVO categoria = CategoriaDAO.encontrar(comboCategoria.getSelectedItem() + "");
+            if (CategoriaDAO.eliminar(categoria) > 0) {
+                JOptionPane.showMessageDialog(this, "Categoría eliminada satisfactoriamente");
+                cargarCategorias();
+                cargarTabla();
+            } else {
+                JOptionPane.showMessageDialog(this, "No se ha podido eliminar la categoría");
+            }
+        }
+    }
+
+    private int deseaEliminarSubcategoria() {
+        int dialog = JOptionPane.YES_NO_OPTION;
+        return (JOptionPane.showConfirmDialog(null, "¿Seguro que desea eliminar la subcategoría de " + txtSub.getText() + "?", "Eliminar", dialog));
+    }
+
+    private int deseaEliminarCategoria() {
+        int dialog = JOptionPane.YES_NO_OPTION;
+        return (JOptionPane.showConfirmDialog(null, "¿Seguro que desea eliminar la categoría de " + comboCategoria.getSelectedItem() + " y todas sus subcategorías?", "Eliminar", dialog));
+    }
 
     private void btnIngresar5KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnIngresar5KeyPressed
         // TODO add your handling code here:

@@ -121,15 +121,16 @@ public class CategoriaDAO {
         }
         return rows;
     }
-
-    public static int eliminar(ClienteVO cliente) {
+*/
+    
+    public static int eliminar(CategoriaVO categoria) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_DELETE);
-            stmt.setString(1, cliente.getId());
+            stmt.setInt(1, categoria.getId());
 
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {
@@ -140,5 +141,5 @@ public class CategoriaDAO {
         }
         return rows;
     }
-     */
+     
 }

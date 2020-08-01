@@ -44,8 +44,19 @@ public class TablaCategoria {
             tabla.setModel(dt);
             tabla.setRowHeight(60);
             TableColumnModel columnModel = tabla.getColumnModel();
-            columnModel.getColumn(0).setPreferredWidth(20);
+            columnModel.getColumn(0).setPreferredWidth(50);
             columnModel.getColumn(1).setPreferredWidth(200);
+        }
+        else{
+                Object fila[] = new Object[2];
+                fila[0] = "";
+                fila[1] = "";
+                dt.addRow(fila);
+                tabla.setModel(dt);
+                tabla.setRowHeight(60);
+                TableColumnModel columnModel = tabla.getColumnModel();
+                columnModel.getColumn(0).setPreferredWidth(50);
+                columnModel.getColumn(1).setPreferredWidth(200);
         }
         
     }

@@ -17,7 +17,7 @@ public class SubcategoriaDAO {
             + " FROM subcategoria";
 
     private static final String SQL_SELECT_BY_ID = "SELECT * "
-            + " FROM subcategoria WHERE id = ?";
+            + " FROM subcategoria WHERE id_categoria = ? and nombre = ?";
 
     private static final String SQL_SELECT_BY_CAT = "SELECT * "
             + " FROM subcategoria WHERE id_categoria = ?";
@@ -83,35 +83,26 @@ public class SubcategoriaDAO {
         }
         return subcategorias;
     }
-/*
-    public static ClienteVO encontrar(String id) {
+
+    public static SubcategoriaVO encontrar(int idCategoria, String nombre) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        ClienteVO cliente = new ClienteVO();
-        cliente.setId("not found");
+        SubcategoriaVO subcat = new SubcategoriaVO();
+        subcat.setId(-1);
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_SELECT_BY_ID);
-            stmt.setString(1, id);
+            stmt.setInt(1, idCategoria);
+            stmt.setString(2, nombre);
             rs = stmt.executeQuery();
             rs.absolute(1);//nos posicionamos en el primer registro devuelto
 
-            String idCliente = rs.getString("id");
-            String nombres = rs.getString("nombres");
-            String apellidos = rs.getString("apellidos");
-            String telefono = rs.getString("telefono");
-            Date f_nac = null;
-            try {
-                f_nac = Conexion.aSqlDate(Conexion.stringADate(rs.getString("f_nac")));
-            } catch (ParseException ex) {
-                Logger.getLogger(MembresiaDAO.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            int id = rs.getInt("id");
+            int cat = rs.getInt("id_categoria");
+            String nombreF = rs.getString("nombre");
             
-            char sexo = rs.getString("sexo").charAt(0);
-            String correo = rs.getString("correo");
-
-            cliente = new ClienteVO(idCliente, nombres, apellidos, telefono, f_nac, sexo, correo);
+            subcat = new SubcategoriaVO(id, cat, nombreF);
 
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -120,9 +111,11 @@ public class SubcategoriaDAO {
             Conexion.close(stmt);
             Conexion.close(conn);
         }
-        return cliente;
+        return subcat;
     }
-*/
+
+    
+    
     public static int insertar(SubcategoriaVO subcategoria) {
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -167,15 +160,16 @@ public class SubcategoriaDAO {
         }
         return rows;
     }
-
-    public static int eliminar(ClienteVO cliente) {
+*/
+    
+    public static int eliminar(SubcategoriaVO subcat) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_DELETE);
-            stmt.setString(1, cliente.getId());
+            stmt.setInt(1, subcat.getId());
 
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {
@@ -186,5 +180,5 @@ public class SubcategoriaDAO {
         }
         return rows;
     }
-*/
+
 }
