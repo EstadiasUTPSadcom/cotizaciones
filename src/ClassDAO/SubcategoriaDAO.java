@@ -16,6 +16,9 @@ public class SubcategoriaDAO {
     private static final String SQL_SELECT = "SELECT * "
             + " FROM subcategoria";
 
+    private static final String SQL_SELECT_BY_ONLY_ID = "SELECT * "
+            + " FROM subcategoria where id = ?";
+    
     private static final String SQL_SELECT_BY_ID = "SELECT * "
             + " FROM subcategoria WHERE id_categoria = ? and nombre = ?";
 
@@ -114,7 +117,34 @@ public class SubcategoriaDAO {
         return subcat;
     }
 
-    
+    public static SubcategoriaVO encontrar(int idSubcategoria) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        SubcategoriaVO subcat = new SubcategoriaVO();
+        subcat.setId(-1);
+        try {
+            conn = Conexion.getConnection();
+            stmt = conn.prepareStatement(SQL_SELECT_BY_ONLY_ID);
+            stmt.setInt(1, idSubcategoria);
+            rs = stmt.executeQuery();
+            rs.absolute(1);//nos posicionamos en el primer registro devuelto
+
+            int id = rs.getInt("id");
+            int cat = rs.getInt("id_categoria");
+            String nombreF = rs.getString("nombre");
+            
+            subcat = new SubcategoriaVO(id, cat, nombreF);
+
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(stmt);
+            Conexion.close(conn);
+        }
+        return subcat;
+    }
     
     public static int insertar(SubcategoriaVO subcategoria) {
         Connection conn = null;

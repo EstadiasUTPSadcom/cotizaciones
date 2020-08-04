@@ -1,7 +1,11 @@
 package Frames;
 
+import ClassDAO.CategoriaDAO;
 import ClassDAO.ProductoDAO;
+import ClassDAO.SubcategoriaDAO;
+import ClassVO.CategoriaVO;
 import ClassVO.ProductoVO;
+import ClassVO.SubcategoriaVO;
 import Tables.TablaProducto;
 import com.sun.awt.AWTUtilities;
 import java.awt.Shape;
@@ -9,17 +13,52 @@ import java.awt.geom.RoundRectangle2D;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class Productos extends javax.swing.JFrame {
 
+    private ProductoVO encontrado = new ProductoVO();
+
+    private void cargarCategorias() {
+        try {
+            JComboBox combo = new JComboBox();
+            combo.removeAllItems();
+            combo.addItem("SELECCIONE UNA OPCIÓN");
+            for (CategoriaVO categoria : CategoriaDAO.listar()) {
+                combo.addItem(categoria.getNombre());
+            }
+            comboCategoria.setModel(combo.getModel());
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    private void cargarSubcategorias(int idCategoria) {
+        try {
+            JComboBox combo = new JComboBox();
+            combo.removeAllItems();
+            combo.addItem("SELECCIONE UNA OPCIÓN");
+            for (SubcategoriaVO categoria : SubcategoriaDAO.obtenerDeCategoria(idCategoria)) {
+                combo.addItem(categoria.getNombre());
+            }
+            comboSubCat.setModel(combo.getModel());
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
     private void clean() {
         txtDescripcion.setText("");
         txtPrecio.setText("");
         txtImagen.setText("");
         txtBuscar.setText("");
+        comboCategoria.setSelectedIndex(0);
+        comboSubCat.setSelectedIndex(0);
+        btnEliminar.setEnabled(false);
+        btnModificar.setEnabled(false);
     }
 
     private void cargarTabla() {
@@ -32,6 +71,8 @@ public class Productos extends javax.swing.JFrame {
         Shape forma = new RoundRectangle2D.Double(0, 0, getBounds().width, getBounds().height, 20, 20);
         AWTUtilities.setWindowShape(this, forma);
         cargarTabla();
+        cargarCategorias();
+        clean();
     }
 
     @SuppressWarnings("unchecked")
@@ -50,12 +91,12 @@ public class Productos extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         jSeparator19 = new javax.swing.JSeparator();
         jLabel33 = new javax.swing.JLabel();
-        btnIngresar3 = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tDatos = new javax.swing.JTable();
         btnIngresar4 = new javax.swing.JButton();
-        btnIngresar5 = new javax.swing.JButton();
+        btnModificar = new javax.swing.JButton();
         txtImagen = new javax.swing.JTextField();
         txtPrecio = new javax.swing.JTextField();
         txtId2 = new javax.swing.JTextField();
@@ -66,8 +107,9 @@ public class Productos extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        comboSubCat = new javax.swing.JComboBox<>();
+        comboCategoria = new javax.swing.JComboBox<>();
+        btnLimpiar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -95,7 +137,7 @@ public class Productos extends javax.swing.JFrame {
         });
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 0, 35, 40));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 40));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 40));
 
         jPanel1.setBackground(new java.awt.Color(238, 238, 238));
         jPanel1.setForeground(new java.awt.Color(238, 238, 238));
@@ -137,27 +179,27 @@ public class Productos extends javax.swing.JFrame {
         jLabel33.setText("Buscar");
         jPanel1.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 30, -1, -1));
 
-        btnIngresar3.setBackground(new java.awt.Color(1, 50, 67));
-        btnIngresar3.setFont(new java.awt.Font("Gotham Extra Light", 0, 18)); // NOI18N
-        btnIngresar3.setForeground(new java.awt.Color(1, 50, 67));
-        btnIngresar3.setText("Eliminar");
-        btnIngresar3.setBorderPainted(false);
-        btnIngresar3.setContentAreaFilled(false);
-        btnIngresar3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnIngresar3.setFocusPainted(false);
-        btnIngresar3.setRequestFocusEnabled(false);
-        btnIngresar3.setVerifyInputWhenFocusTarget(false);
-        btnIngresar3.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminar.setBackground(new java.awt.Color(1, 50, 67));
+        btnEliminar.setFont(new java.awt.Font("Gotham Extra Light", 0, 18)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(1, 50, 67));
+        btnEliminar.setText("Eliminar");
+        btnEliminar.setBorderPainted(false);
+        btnEliminar.setContentAreaFilled(false);
+        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEliminar.setFocusPainted(false);
+        btnEliminar.setRequestFocusEnabled(false);
+        btnEliminar.setVerifyInputWhenFocusTarget(false);
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIngresar3ActionPerformed(evt);
+                btnEliminarActionPerformed(evt);
             }
         });
-        btnIngresar3.addKeyListener(new java.awt.event.KeyAdapter() {
+        btnEliminar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnIngresar3KeyPressed(evt);
+                btnEliminarKeyPressed(evt);
             }
         });
-        jPanel1.add(btnIngresar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 480, 110, 40));
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 490, 110, 40));
 
         jLabel17.setBackground(new java.awt.Color(103, 128, 159));
         jLabel17.setFont(new java.awt.Font("Gotham Thin", 0, 18)); // NOI18N
@@ -194,29 +236,29 @@ public class Productos extends javax.swing.JFrame {
                 btnIngresar4KeyPressed(evt);
             }
         });
-        jPanel1.add(btnIngresar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 480, 110, 40));
+        jPanel1.add(btnIngresar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 490, 110, 40));
 
-        btnIngresar5.setBackground(new java.awt.Color(1, 50, 67));
-        btnIngresar5.setFont(new java.awt.Font("Gotham Extra Light", 0, 18)); // NOI18N
-        btnIngresar5.setForeground(new java.awt.Color(1, 50, 67));
-        btnIngresar5.setText("Modificar");
-        btnIngresar5.setBorderPainted(false);
-        btnIngresar5.setContentAreaFilled(false);
-        btnIngresar5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnIngresar5.setFocusPainted(false);
-        btnIngresar5.setRequestFocusEnabled(false);
-        btnIngresar5.setVerifyInputWhenFocusTarget(false);
-        btnIngresar5.addActionListener(new java.awt.event.ActionListener() {
+        btnModificar.setBackground(new java.awt.Color(1, 50, 67));
+        btnModificar.setFont(new java.awt.Font("Gotham Extra Light", 0, 18)); // NOI18N
+        btnModificar.setForeground(new java.awt.Color(1, 50, 67));
+        btnModificar.setText("Modificar");
+        btnModificar.setBorderPainted(false);
+        btnModificar.setContentAreaFilled(false);
+        btnModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnModificar.setFocusPainted(false);
+        btnModificar.setRequestFocusEnabled(false);
+        btnModificar.setVerifyInputWhenFocusTarget(false);
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIngresar5ActionPerformed(evt);
+                btnModificarActionPerformed(evt);
             }
         });
-        btnIngresar5.addKeyListener(new java.awt.event.KeyAdapter() {
+        btnModificar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnIngresar5KeyPressed(evt);
+                btnModificarKeyPressed(evt);
             }
         });
-        jPanel1.add(btnIngresar5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 480, 110, 40));
+        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 490, 110, 40));
 
         txtImagen.setBackground(new java.awt.Color(238, 238, 238));
         txtImagen.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
@@ -241,6 +283,16 @@ public class Productos extends javax.swing.JFrame {
         txtBuscar.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
         txtBuscar.setForeground(new java.awt.Color(1, 50, 67));
         txtBuscar.setBorder(null);
+        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscarActionPerformed(evt);
+            }
+        });
+        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarKeyReleased(evt);
+            }
+        });
         jPanel1.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 50, 330, 30));
 
         txtDescripcion.setBackground(new java.awt.Color(238, 238, 238));
@@ -284,15 +336,47 @@ public class Productos extends javax.swing.JFrame {
         jLabel24.setText("Subcategoría");
         jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 270, -1, -1));
 
-        jComboBox1.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(1, 50, 67));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 300, 160, -1));
+        comboSubCat.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
+        comboSubCat.setForeground(new java.awt.Color(1, 50, 67));
+        comboSubCat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboSubCatActionPerformed(evt);
+            }
+        });
+        jPanel1.add(comboSubCat, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 300, 160, -1));
 
-        jComboBox2.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
-        jComboBox2.setForeground(new java.awt.Color(1, 50, 67));
-        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 160, -1));
+        comboCategoria.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
+        comboCategoria.setForeground(new java.awt.Color(1, 50, 67));
+        comboCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboCategoriaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(comboCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 160, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 800, 560));
+        btnLimpiar.setBackground(new java.awt.Color(1, 50, 67));
+        btnLimpiar.setFont(new java.awt.Font("Gotham Extra Light", 0, 18)); // NOI18N
+        btnLimpiar.setForeground(new java.awt.Color(1, 50, 67));
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.setBorderPainted(false);
+        btnLimpiar.setContentAreaFilled(false);
+        btnLimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLimpiar.setFocusPainted(false);
+        btnLimpiar.setRequestFocusEnabled(false);
+        btnLimpiar.setVerifyInputWhenFocusTarget(false);
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+        btnLimpiar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnLimpiarKeyPressed(evt);
+            }
+        });
+        jPanel1.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 560, 110, 40));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 810, 620));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -317,14 +401,28 @@ public class Productos extends javax.swing.JFrame {
         this.setState(Menu.ICONIFIED);
     }//GEN-LAST:event_jLabel8MouseClicked
 
-    private void btnIngresar3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnIngresar3KeyPressed
+    private void btnEliminarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnEliminarKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnIngresar3KeyPressed
+    }//GEN-LAST:event_btnEliminarKeyPressed
 
-    private void btnIngresar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresar3ActionPerformed
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
+        if (deseaEliminar() == 0) {
+            if (ProductoDAO.eliminar(encontrado) > 0) {
+                JOptionPane.showMessageDialog(this, "El producto " + encontrado.getId() + " : " + encontrado.getDescripcion() + " ha sido eliminado con éxito");
+                clean();
+                cargarTabla();
+            } else {
+                JOptionPane.showMessageDialog(this, "No se ha podido eliminar el producto");
+            }
+        }
 
-    }//GEN-LAST:event_btnIngresar3ActionPerformed
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private int deseaEliminar() {
+        int dialog = JOptionPane.YES_NO_OPTION;
+        return (JOptionPane.showConfirmDialog(null, "¿Seguro que desea eliminar el producto " + encontrado.getId() + " : " + encontrado.getDescripcion() + " ?", "Eliminar", dialog));
+    }
 
     private void btnIngresar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresar4ActionPerformed
         // TODO add your handling code here:
@@ -342,23 +440,22 @@ public class Productos extends javax.swing.JFrame {
         }
     }
 
-    private void cargarCamposCon(ProductoVO producto){
+    private void cargarCamposCon(ProductoVO producto) {
         txtDescripcion.setText(producto.getDescripcion());
         txtPrecio.setText(producto.getPrecio() + "");
         txtImagen.setText("");
     }
-    
+
     private int registrar() {
         if (datosValidos()) {
             ProductoVO producto = obtenerDatos();
             return (ProductoDAO.insertar(producto));
         }
         return 0;
-
     }
 
     private boolean datosValidos() {
-        return fotoValida() && camposLlenados() && precioIsDouble();
+        return fotoValida() && camposLlenados() && precioIsDouble() && comboCategoria.getSelectedIndex() != 0 && comboSubCat.getSelectedIndex() != 0;
     }
 
     private boolean fotoValida() {
@@ -390,13 +487,79 @@ public class Productos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnIngresar4KeyPressed
 
-    private void btnIngresar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresar5ActionPerformed
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnIngresar5ActionPerformed
+        if (deseaModificar() == 0) {
+            if (txtImagen.getText().length() != 0) { //En caso de que también se haya modificado la imagen
+                int mensaje = modificar();
+                if (mensaje > 0) {
+                    JOptionPane.showMessageDialog(this, "El producto ha sido modificado");
+                    cargarTabla();
+                    clean();
+                } else {
+                    JOptionPane.showMessageDialog(this, "No se ha podido modificar el producto");
+                }
+            } else {
+                int mensaje = modificarNoImagen();
+                if (mensaje > 0) {
+                    JOptionPane.showMessageDialog(this, "El producto ha sido modificado");
+                    cargarTabla();
+                    clean();
+                } else {
+                    JOptionPane.showMessageDialog(this, "No se ha podido modificar el producto");
+                }
+            }
+        }
+    }//GEN-LAST:event_btnModificarActionPerformed
 
-    private void btnIngresar5KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnIngresar5KeyPressed
+    private int deseaModificar() {
+        int dialog = JOptionPane.YES_NO_OPTION;
+        return (JOptionPane.showConfirmDialog(null, "¿Seguro que desea modificar el producto " + encontrado.getId() + " : " + encontrado.getDescripcion() + " ?", "Modificar", dialog));
+    }
+
+    private int modificarNoImagen() {
+        if (datosValidosMinusImage()) {
+            ProductoVO producto = obtenerDatosMinusImage();
+            int fila = tDatos.getSelectedRow();
+            producto.setId(Integer.parseInt(tDatos.getValueAt(fila, 0).toString()));
+            return (ProductoDAO.actualizar(producto, false));
+        }
+        return 0;
+
+    }
+
+    private ProductoVO obtenerDatosMinusImage() {
+        CategoriaVO catCombo = CategoriaDAO.encontrar(comboCategoria.getSelectedItem() + "");
+        SubcategoriaVO subcatCombo = SubcategoriaDAO.encontrar(catCombo.getId(), comboSubCat.getSelectedItem() + "");
+        ProductoVO producto = new ProductoVO();
+        producto.setDescripcion(txtDescripcion.getText());
+        producto.setPrecio(Double.parseDouble(txtPrecio.getText()));
+        producto.setIdSubcategoria(subcatCombo.getId());
+        return producto;
+
+    }
+
+    private boolean datosValidosMinusImage() {
+        return camposLlenadosMinusImage() && precioIsDouble() && comboCategoria.getSelectedIndex() != 0 && comboSubCat.getSelectedIndex() != 0;
+    }
+
+    private boolean camposLlenadosMinusImage() {
+        return txtDescripcion.getText().length() != 0 && txtPrecio.getText().length() != 0;
+    }
+
+    private int modificar() {
+        if (datosValidos()) {
+            ProductoVO producto = obtenerDatos();
+            int fila = tDatos.getSelectedRow();
+            producto.setId(Integer.parseInt(tDatos.getValueAt(fila, 0).toString()));
+            return (ProductoDAO.actualizar(producto, true));
+        }
+        return 0;
+    }
+
+    private void btnModificarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnModificarKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnIngresar5KeyPressed
+    }//GEN-LAST:event_btnModificarKeyPressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
@@ -420,21 +583,78 @@ public class Productos extends javax.swing.JFrame {
 
     private void tDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tDatosMouseClicked
         // TODO add your handling code here:
-        obtenerElementoDePosicion(tDatos.getSelectedRow());
+        ProductoVO enTabla = obtenerElementoDePosicion(tDatos.getSelectedRow());
+        encontrado = ProductoDAO.encontrar(enTabla.getId());
+        SubcategoriaVO subcatFound = SubcategoriaDAO.encontrar(encontrado.getIdSubcategoria());
+        CategoriaVO catFound = CategoriaDAO.encontrar(subcatFound.getIdCategoria());
+
+        txtDescripcion.setText(encontrado.getDescripcion());
+        txtPrecio.setText(encontrado.getPrecio() + "");
+        comboCategoria.setSelectedItem(catFound.getNombre());
+        comboSubCat.setSelectedItem(subcatFound.getNombre());
+
+        btnEliminar.setEnabled(true);
+        btnModificar.setEnabled(true);
+        //comboCategoria.setSelectedItem();
     }//GEN-LAST:event_tDatosMouseClicked
 
-    private void obtenerElementoDePosicion(int fila){
-        ProductoVO producto = new ProductoVO();
-        producto.setDescripcion(tDatos.getValueAt(fila, 0).toString());
-        producto.setPrecio(Double.parseDouble(tDatos.getValueAt(fila, 1).toString()));
-        //txtRuta.setText(tColonias.getValueAt(fila, 2).toString())
+    private void comboCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCategoriaActionPerformed
+        // TODO add your handling code here:
+        if (comboCategoria.getSelectedIndex() != 0) {
+            CategoriaVO catCombo = CategoriaDAO.encontrar(comboCategoria.getSelectedItem() + "");
+            cargarSubcategorias(catCombo.getId());
+        } else {
+            cargarSubcategorias(-1);
+        }
+    }//GEN-LAST:event_comboCategoriaActionPerformed
 
+    private void comboSubCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboSubCatActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_comboSubCatActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // TODO add your handling code here:
+        clean();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnLimpiarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnLimpiarKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLimpiarKeyPressed
+
+    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscarActionPerformed
+
+    private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
+        // TODO add your handling code here:
+        if(txtBuscar.getText().length()!=0){
+            cargarBusqueda();
+        }
+        else{
+            cargarTabla();
+        }
+    }//GEN-LAST:event_txtBuscarKeyReleased
+
+    private void cargarBusqueda(){
+            TablaProducto.cargarProductos(tDatos,txtBuscar.getText());
     }
     
+    private ProductoVO obtenerElementoDePosicion(int fila) {
+        ProductoVO producto = new ProductoVO();
+        producto.setId(Integer.parseInt(tDatos.getValueAt(fila, 0).toString()));
+        producto.setDescripcion(tDatos.getValueAt(fila, 1).toString());
+        producto.setPrecio(Double.parseDouble(tDatos.getValueAt(fila, 2).toString()));
+        return producto;
+    }
+
     private ProductoVO obtenerDatos() {
+        CategoriaVO catCombo = CategoriaDAO.encontrar(comboCategoria.getSelectedItem() + "");
+        SubcategoriaVO subcatCombo = SubcategoriaDAO.encontrar(catCombo.getId(), comboSubCat.getSelectedItem() + "");
         ProductoVO producto = new ProductoVO();
         producto.setDescripcion(txtDescripcion.getText());
         producto.setPrecio(Double.parseDouble(txtPrecio.getText()));
+        producto.setIdSubcategoria(subcatCombo.getId());
         try {
             File ruta = new File(txtImagen.getText());
             byte[] icono = new byte[(int) ruta.length()];
@@ -486,12 +706,13 @@ public class Productos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnIngresar3;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnIngresar4;
-    private javax.swing.JButton btnIngresar5;
+    private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnModificar;
+    private javax.swing.JComboBox<String> comboCategoria;
+    private javax.swing.JComboBox<String> comboSubCat;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;

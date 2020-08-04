@@ -32,32 +32,76 @@ public class TablaProducto {
         ProductoVO producto = new ProductoVO();
         ArrayList<ProductoVO> list = ProductoDAO.listar();
 
-        if (list.size() > 0) {
-            for (int i = 0; i < list.size(); i++) {
-                Object fila[] = new Object[5];
-                producto = list.get(i);
-                fila[0] = producto.getId();
-                fila[1] = producto.getDescripcion();
-                fila[2] = producto.getPrecio();
-                try {
-                    byte[] bi = producto.getImagen();
-                    BufferedImage image = null;
-                    InputStream in = new ByteArrayInputStream(bi);
-                    image = ImageIO.read(in);
-                    ImageIcon imgi = new ImageIcon(image.getScaledInstance(60, 60, 0));
-                    fila[3] = new JLabel(imgi);
-                } catch (Exception ex) {
-                    fila[3] = new JLabel("No imagen");
-                }
-                dt.addRow(fila);
+        for (int i = 0; i < list.size(); i++) {
+            Object fila[] = new Object[5];
+            producto = list.get(i);
+            fila[0] = producto.getId();
+            fila[1] = producto.getDescripcion();
+            fila[2] = producto.getPrecio();
+            try {
+                byte[] bi = producto.getImagen();
+                BufferedImage image = null;
+                InputStream in = new ByteArrayInputStream(bi);
+                image = ImageIO.read(in);
+                ImageIcon imgi = new ImageIcon(image.getScaledInstance(60, 60, 0));
+                fila[3] = new JLabel(imgi);
+            } catch (Exception ex) {
+                fila[3] = new JLabel("No imagen");
             }
-            tabla.setModel(dt);
-            tabla.setRowHeight(60);
-            TableColumnModel columnModel = tabla.getColumnModel();
-            columnModel.getColumn(0).setPreferredWidth(20);
-            columnModel.getColumn(1).setPreferredWidth(200);
-            columnModel.getColumn(2).setPreferredWidth(50);
-            columnModel.getColumn(3).setPreferredWidth(60);
+            dt.addRow(fila);
         }
+        tabla.setModel(dt);
+        tabla.setRowHeight(60);
+        TableColumnModel columnModel = tabla.getColumnModel();
+        columnModel.getColumn(0).setPreferredWidth(20);
+        columnModel.getColumn(1).setPreferredWidth(200);
+        columnModel.getColumn(2).setPreferredWidth(50);
+        columnModel.getColumn(3).setPreferredWidth(60);
+
+    }
+    
+    public static void cargarProductos(JTable tabla, String nombre) {
+
+        tabla.setDefaultRenderer(Object.class, new Render());
+        DefaultTableModel dt = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        dt.addColumn("Id");
+        dt.addColumn("Descripcion");
+        dt.addColumn("Precio");
+        dt.addColumn("Imagen");
+
+        ProductoVO producto = new ProductoVO();
+        ArrayList<ProductoVO> list = ProductoDAO.encontrar(nombre);
+
+        for (int i = 0; i < list.size(); i++) {
+            Object fila[] = new Object[5];
+            producto = list.get(i);
+            fila[0] = producto.getId();
+            fila[1] = producto.getDescripcion();
+            fila[2] = producto.getPrecio();
+            try {
+                byte[] bi = producto.getImagen();
+                BufferedImage image = null;
+                InputStream in = new ByteArrayInputStream(bi);
+                image = ImageIO.read(in);
+                ImageIcon imgi = new ImageIcon(image.getScaledInstance(60, 60, 0));
+                fila[3] = new JLabel(imgi);
+            } catch (Exception ex) {
+                fila[3] = new JLabel("No imagen");
+            }
+            dt.addRow(fila);
+        }
+        tabla.setModel(dt);
+        tabla.setRowHeight(60);
+        TableColumnModel columnModel = tabla.getColumnModel();
+        columnModel.getColumn(0).setPreferredWidth(20);
+        columnModel.getColumn(1).setPreferredWidth(200);
+        columnModel.getColumn(2).setPreferredWidth(50);
+        columnModel.getColumn(3).setPreferredWidth(60);
+
     }
 }

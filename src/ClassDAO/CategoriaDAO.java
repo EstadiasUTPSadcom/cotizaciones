@@ -78,6 +78,32 @@ public class CategoriaDAO {
         return categoria;
     }
 
+    public static CategoriaVO encontrar(int id) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        CategoriaVO categoria = null;
+        try {
+            conn = Conexion.getConnection();
+            stmt = conn.prepareStatement(SQL_SELECT_BY_ID);
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                int idP = rs.getInt("id");
+                String nombreP = rs.getString("nombre");
+
+                categoria = new CategoriaVO(idP, nombreP);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(stmt);
+            Conexion.close(conn);
+        }
+        return categoria;
+    }
+    
     public static int insertar(CategoriaVO categoria) {
         Connection conn = null;
         PreparedStatement stmt = null;

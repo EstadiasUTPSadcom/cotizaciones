@@ -1,4 +1,3 @@
-
 package ClassDAO;
 
 import ClassVO.ProductoVO;
@@ -15,8 +14,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ProductoDAO {
-    
-     private static final String SQL_SELECT = "SELECT * "
+
+    private static final String SQL_SELECT = "SELECT * "
             + " FROM producto";
 
     private static final String SQL_SELECT_BY_ID = "SELECT * "
@@ -26,7 +25,10 @@ public class ProductoDAO {
             + " VALUES(?, ?, ?, ?)";
 
     private static final String SQL_UPDATE = "UPDATE producto "
-            + " SET descripcion=?, precio=?, imagen=? WHERE id=?";
+            + " SET descripcion=?, precio=?, imagen=?, id_subcategoria = ? WHERE id=?";
+    
+    private static final String SQL_UPDATE_WITHOUT_IMAGE = "UPDATE producto "
+            + " SET descripcion=?, precio=?,  id_subcategoria = ? WHERE id=?";
 
     private static final String SQL_DELETE = "DELETE FROM producto WHERE id = ?";
 
@@ -46,7 +48,7 @@ public class ProductoDAO {
                 double precio = rs.getDouble("precio");
                 byte[] imagen = rs.getBytes("imagen");
                 int subcategoria = rs.getInt("id_subcategoria");
-                
+
                 producto = new ProductoVO(idP, descripcion, precio, imagen, subcategoria);
                 productos.add(producto);
             }
@@ -59,35 +61,56 @@ public class ProductoDAO {
         }
         return productos;
     }
-/*
-    public static ClienteVO encontrar(String id) {
+
+    public static ArrayList<ProductoVO> encontrar(String nombre) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        ClienteVO cliente = new ClienteVO();
-        cliente.setId("not found");
+        ProductoVO producto = null;
+        ArrayList<ProductoVO> productos = new ArrayList<>();
+        try {
+            conn = Conexion.getConnection();
+            stmt = conn.prepareStatement("select * from producto where descripcion like '%" + nombre + "%'");
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                int idP = rs.getInt("id");
+                String descripcion = rs.getString("descripcion");
+                double precio = rs.getDouble("precio");
+                byte[] imagen = rs.getBytes("imagen");
+                int subcategoria = rs.getInt("id_subcategoria");
+
+                producto = new ProductoVO(idP, descripcion, precio, imagen, subcategoria);
+                productos.add(producto);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(stmt);
+            Conexion.close(conn);
+        }
+        return productos;
+    }
+    
+    public static ProductoVO encontrar(int id) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ProductoVO producto = new ProductoVO();
+        producto.setId(-1);
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_SELECT_BY_ID);
-            stmt.setString(1, id);
+            stmt.setInt(1, id);
             rs = stmt.executeQuery();
             rs.absolute(1);//nos posicionamos en el primer registro devuelto
 
-            String idCliente = rs.getString("id");
-            String nombres = rs.getString("nombres");
-            String apellidos = rs.getString("apellidos");
-            String telefono = rs.getString("telefono");
-            Date f_nac = null;
-            try {
-                f_nac = Conexion.aSqlDate(Conexion.stringADate(rs.getString("f_nac")));
-            } catch (ParseException ex) {
-                Logger.getLogger(MembresiaDAO.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-            char sexo = rs.getString("sexo").charAt(0);
-            String correo = rs.getString("correo");
-
-            cliente = new ClienteVO(idCliente, nombres, apellidos, telefono, f_nac, sexo, correo);
+            int idP = rs.getInt("id");
+            String descripcion = rs.getString("descripcion");
+            double precio = rs.getDouble("precio");
+            byte[] imagen = rs.getBytes("imagen");
+            int subcategoria = rs.getInt("id_subcategoria");
+            producto = new ProductoVO(idP, descripcion, precio, imagen, subcategoria);
 
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -96,9 +119,9 @@ public class ProductoDAO {
             Conexion.close(stmt);
             Conexion.close(conn);
         }
-        return cliente;
+        return producto;
     }
-*/
+
     public static int insertar(ProductoVO producto) {
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -109,33 +132,8 @@ public class ProductoDAO {
             stmt.setString(1, producto.getDescripcion());
             stmt.setDouble(2, producto.getPrecio());
             stmt.setBytes(3, producto.getImagen());
-           stmt.setInt(4, producto.getIdSubcategoria());
-           
-            rows = stmt.executeUpdate();
-        } catch (SQLException ex) {
-            ex.printStackTrace(System.out);
-        } finally {
-            Conexion.close(stmt);
-            Conexion.close(conn);
-        }
-        return rows;
-    }
-/*
-    public static int actualizar(ClienteVO cliente) {
-        Connection conn = null;
-        PreparedStatement stmt = null;
-        int rows = 0;
-        try {
-            conn = Conexion.getConnection();
-            stmt = conn.prepareStatement(SQL_UPDATE);
-            stmt.setString(1, cliente.getNombres());
-            stmt.setString(2, cliente.getApellidos());
-            stmt.setString(3, cliente.getTelefono());
-            stmt.setDate(4, cliente.getF_nac());
-            stmt.setString(5, String.valueOf(cliente.getSexo()));
-            stmt.setString(6, cliente.getCorreo());
-            stmt.setString(7, cliente.getId());
-            
+            stmt.setInt(4, producto.getIdSubcategoria());
+
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -146,14 +144,48 @@ public class ProductoDAO {
         return rows;
     }
 
-    public static int eliminar(ClienteVO cliente) {
+    public static int actualizar(ProductoVO producto, boolean imagen) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        int rows = 0;
+        try {
+            if (imagen) {
+                conn = Conexion.getConnection();
+                stmt = conn.prepareStatement(SQL_UPDATE);
+                stmt.setString(1, producto.getDescripcion());
+                stmt.setDouble(2, producto.getPrecio());
+                stmt.setBytes(3, producto.getImagen());
+                stmt.setInt(4, producto.getIdSubcategoria());
+                stmt.setInt(5, producto.getId());
+
+                rows = stmt.executeUpdate();
+            } else {
+                conn = Conexion.getConnection();
+                stmt = conn.prepareStatement(SQL_UPDATE_WITHOUT_IMAGE);
+                stmt.setString(1, producto.getDescripcion());
+                stmt.setDouble(2, producto.getPrecio());
+                stmt.setInt(3, producto.getIdSubcategoria());
+                stmt.setInt(4, producto.getId());
+
+                rows = stmt.executeUpdate();
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(stmt);
+            Conexion.close(conn);
+        }
+        return rows;
+    }
+
+    public static int eliminar(ProductoVO producto) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_DELETE);
-            stmt.setString(1, cliente.getId());
+            stmt.setInt(1, producto.getId());
 
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {
@@ -165,5 +197,4 @@ public class ProductoDAO {
         return rows;
     }
 
-    */
 }
