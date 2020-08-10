@@ -31,6 +31,9 @@ public class ProductoDAO {
             + " SET descripcion=?, precio=?,  id_subcategoria = ? WHERE id=?";
 
     private static final String SQL_DELETE = "DELETE FROM producto WHERE id = ?";
+    
+    private static final String SQL_SELECT_BY_PACKAGE = "SELECT id, descripcion, precio, imagen, id_subcategoria "
+            + " FROM empaquetado join producto on empaquetado.id_producto = producto.id WHERE id_paquete = ?";
 
     public static ArrayList<ProductoVO> listar() {
         Connection conn = null;
@@ -92,6 +95,37 @@ public class ProductoDAO {
         return productos;
     }
     
+    public static ArrayList<ProductoVO> encontrarEnPaquete(int idPaquete) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ProductoVO producto = null;
+        ArrayList<ProductoVO> productos = new ArrayList<>();
+        try {
+            conn = Conexion.getConnection();
+            stmt = conn.prepareStatement(SQL_SELECT_BY_PACKAGE);
+            stmt.setInt(1, idPaquete);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                int idP = rs.getInt("id");
+                String descripcion = rs.getString("descripcion");
+                double precio = rs.getDouble("precio");
+                byte[] imagen = rs.getBytes("imagen");
+                int subcategoria = rs.getInt("id_subcategoria");
+
+                producto = new ProductoVO(idP, descripcion, precio, imagen, subcategoria);
+                productos.add(producto);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(stmt);
+            Conexion.close(conn);
+        }
+        return productos;
+    }
+    
     public static ProductoVO encontrar(int id) {
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -122,6 +156,8 @@ public class ProductoDAO {
         return producto;
     }
 
+    
+    
     public static int insertar(ProductoVO producto) {
         Connection conn = null;
         PreparedStatement stmt = null;

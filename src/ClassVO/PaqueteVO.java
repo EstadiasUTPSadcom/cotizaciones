@@ -3,23 +3,25 @@ package ClassVO;
 
 public class PaqueteVO {
     
-    private int id;
-    private String descripcion;
-    private double suma;
-    private double precio;
-    //Descuento
+     private int id;
+     private String descripcion;
+     private double suma;
+     private int descuento;
+     private double precio;
 
-    public PaqueteVO(int id, String descripcion, double suma, double precio) {
+    public PaqueteVO(int id, String descripcion, double suma, int descuento, double precio) {
         this.id = id;
         this.descripcion = descripcion;
         this.suma = suma;
+        this.descuento = descuento;
         this.precio = precio;
     }
 
     public PaqueteVO() {
     }
 
-    
+     
+     
     public int getId() {
         return id;
     }
@@ -44,6 +46,14 @@ public class PaqueteVO {
         this.suma = suma;
     }
 
+    public int getDescuento() {
+        return descuento;
+    }
+
+    public void setDescuento(int descuento) {
+        this.descuento = descuento;
+    }
+
     public double getPrecio() {
         return precio;
     }
@@ -54,8 +64,9 @@ public class PaqueteVO {
 
     @Override
     public String toString() {
-        return  id + " " + descripcion + " " + suma + " " + precio;
+        return id + " " + descripcion + " " + precio;
     }
+     
     
     
          
