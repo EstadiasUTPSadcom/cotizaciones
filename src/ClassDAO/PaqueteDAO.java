@@ -16,7 +16,7 @@ public class PaqueteDAO {
     private static final String SQL_SELECT_BY_ID = "SELECT * "
             + " FROM paquete WHERE id = ?";
 
-    private static final String SQL_INSERT = "INSERT INTO paquete(descripcion, suma, descuento, precio "
+    private static final String SQL_INSERT = "INSERT INTO paquete(descripcion, suma, descuento, precio) "
             + " VALUES(?, ?, ?, ?)";
 
     private static final String SQL_UPDATE = "UPDATE paquete "

@@ -71,7 +71,6 @@ public class UsuarioDAO {
 
                 usuario = new UsuarioVO(aliase, passwd);
                 usuarios.add(usuario);
-                usuarios.add(usuario);
             }
 
         } catch (SQLException ex) {

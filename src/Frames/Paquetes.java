@@ -18,7 +18,7 @@ public class Paquetes extends javax.swing.JFrame {
         txtPrecio.setText("");
         txtBuscar.setText("");
         deshabilitarBotones();
-        
+
         txtDescripcion.setEditable(false);
         txtDescuento.setEditable(false);
         txtSubtotal.setEditable(false);
@@ -348,23 +348,17 @@ public class Paquetes extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.setState(Menu.ICONIFIED);
     }//GEN-LAST:event_jLabel8MouseClicked
-    
+
     private int deseaEliminar(PaqueteVO encontrado) {
         int dialog = JOptionPane.YES_NO_OPTION;
         return (JOptionPane.showConfirmDialog(null, "¿Seguro que desea eliminar el paquete " + encontrado.getId() + " : " + encontrado.getDescripcion() + " ?", "Eliminar", dialog));
     }
-/*
-    private void guardar() {
-        int mensaje = registrar();
-        if (mensaje > 0) {
-            JOptionPane.showMessageDialog(this, "Producto registrado");
-            cargarTabla();
-            clean();
-        } else {
-            JOptionPane.showMessageDialog(this, "No se ha podido registrar el producto");
-        }
-    }
 
+    
+    private void guardar() {
+    
+    }
+/*
     private void cargarCamposCon(ProductoVO producto) {
         txtDescripcion.setText(producto.getDescripcion());
         txtSubtotal.setText(producto.getPrecio() + "");
@@ -379,11 +373,6 @@ public class Paquetes extends javax.swing.JFrame {
         return 0;
     }
    
-
-    private boolean datosValidos() {
-        return fotoValida() && camposLlenados() && precioIsDouble() && comboCategoria.getSelectedIndex() != 0 && comboSubCat.getSelectedIndex() != 0;
-    }
-
     private boolean fotoValida() {
         try {
             File ruta = new File(txtImagen.getText());
@@ -408,52 +397,20 @@ public class Paquetes extends javax.swing.JFrame {
         }
         return false;
     }
-
-    private int deseaModificar() {
-        int dialog = JOptionPane.YES_NO_OPTION;
-        return (JOptionPane.showConfirmDialog(null, "¿Seguro que desea modificar el producto " + encontrado.getId() + " : " + encontrado.getDescripcion() + " ?", "Modificar", dialog));
-    }
-
-    private int modificarNoImagen() {
-        if (datosValidosMinusImage()) {
-            ProductoVO producto = obtenerDatosMinusImage();
-            int fila = TProductos.getSelectedRow();
-            producto.setId(Integer.parseInt(TProductos.getValueAt(fila, 0).toString()));
-            return (ProductoDAO.actualizar(producto, false));
-        }
-        return 0;
-
-    }
-
-    private ProductoVO obtenerDatosMinusImage() {
-        CategoriaVO catCombo = CategoriaDAO.encontrar(comboCategoria.getSelectedItem() + "");
-        SubcategoriaVO subcatCombo = SubcategoriaDAO.encontrar(catCombo.getId(), comboSubCat.getSelectedItem() + "");
-        ProductoVO producto = new ProductoVO();
-        producto.setDescripcion(txtDescripcion.getText());
-        producto.setPrecio(Double.parseDouble(txtSubtotal.getText()));
-        producto.setIdSubcategoria(subcatCombo.getId());
-        return producto;
-
-    }
-
-    private boolean datosValidosMinusImage() {
-        return camposLlenadosMinusImage() && precioIsDouble() && comboCategoria.getSelectedIndex() != 0 && comboSubCat.getSelectedIndex() != 0;
-    }
-
-    private boolean camposLlenadosMinusImage() {
-        return txtDescripcion.getText().length() != 0 && txtSubtotal.getText().length() != 0;
-    }
-
-    private int modificar() {
-        if (datosValidos()) {
-            ProductoVO producto = obtenerDatos();
-            int fila = TProductos.getSelectedRow();
-            producto.setId(Integer.parseInt(TProductos.getValueAt(fila, 0).toString()));
-            return (ProductoDAO.actualizar(producto, true));
-        }
-        return 0;
-    }
      */
+    private int deseaModificar(PaqueteVO encontrado) {
+        int dialog = JOptionPane.YES_NO_OPTION;
+        return (JOptionPane.showConfirmDialog(null, "¿Seguro que desea modificar el paquete " + encontrado.getId() + " : " + encontrado.getDescripcion() + " ?", "Modificar", dialog));
+    }
+
+    private void modificar(PaqueteVO paquete) {
+        PaquetesCreation modificacion = new PaquetesCreation();
+        modificacion.setModificar(paquete);
+        modificacion.setEditar(true);
+        modificacion.setVisible(true);
+        dispose();
+    }
+     
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:
         Menu menu = new Menu();
@@ -494,11 +451,10 @@ public class Paquetes extends javax.swing.JFrame {
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
         // TODO add your handling code here:
-        
-        if(txtBuscar.getText().length()!=0){
+
+        if (txtBuscar.getText().length() != 0) {
             cargarBusqueda();
-        }
-        else{
+        } else {
             cargarTabla();
             cargarProductos(0);
         }
@@ -510,27 +466,10 @@ public class Paquetes extends javax.swing.JFrame {
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
-        /*if (deseaModificar() == 0) {
-            if (txtImagen.getText().length() != 0) { //En caso de que también se haya modificado la imagen
-                int mensaje = modificar();
-                if (mensaje > 0) {
-                    JOptionPane.showMessageDialog(this, "El producto ha sido modificado");
-                    cargarTabla();
-                    clean();
-                } else {
-                    JOptionPane.showMessageDialog(this, "No se ha podido modificar el producto");
-                }
-            } else {
-                int mensaje = modificarNoImagen();
-                if (mensaje > 0) {
-                    JOptionPane.showMessageDialog(this, "El producto ha sido modificado");
-                    cargarTabla();
-                    clean();
-                } else {
-                    JOptionPane.showMessageDialog(this, "No se ha podido modificar el producto");
-                }
-            }
-        }*/
+        PaqueteVO seleccionado = obtenerElementoDeFila(tPaquetes.getSelectedRow());
+        if (deseaModificar(seleccionado) == 0) {
+            modificar(seleccionado);
+        }
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnNuevoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnNuevoKeyPressed
@@ -539,7 +478,10 @@ public class Paquetes extends javax.swing.JFrame {
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         // TODO add your handling code here:
-        //guardar();
+        PaquetesCreation nuevo = new PaquetesCreation();
+        nuevo.setEditar(false);
+        nuevo.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnEliminarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnEliminarKeyPressed
@@ -549,7 +491,7 @@ public class Paquetes extends javax.swing.JFrame {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
         PaqueteVO seleccionado = obtenerElementoDeFila(tPaquetes.getSelectedRow());
-         if (deseaEliminar(seleccionado) == 0) {
+        if (deseaEliminar(seleccionado) == 0) {
             if (PaqueteDAO.eliminar(seleccionado) > 0) {
                 JOptionPane.showMessageDialog(this, "El paquete " + seleccionado.getId() + " : " + seleccionado.getDescripcion() + " ha sido eliminado con éxito");
                 clean();
@@ -559,7 +501,7 @@ public class Paquetes extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "No se ha podido eliminar el paquete");
             }
         }
-         
+
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void tPaquetesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tPaquetesMouseClicked
@@ -569,30 +511,32 @@ public class Paquetes extends javax.swing.JFrame {
         llenarCampos(seleccionado);
         habilitarBotones();
     }//GEN-LAST:event_tPaquetesMouseClicked
-    
-    private void cargarProductos(int idPaquete){
+
+    private void cargarProductos(int idPaquete) {
         TablaProducto.cargarProductos(TProductos, idPaquete);
     }
-    
-    private void habilitarBotones(){
+
+    private void habilitarBotones() {
         btnEliminar.setEnabled(true);
         btnModificar.setEnabled(true);
     }
-    
-    private void deshabilitarBotones(){
+
+    private void deshabilitarBotones() {
         btnEliminar.setEnabled(false);
         btnModificar.setEnabled(false);
     }
-    
-    private void cargarBusqueda(){
-        TablaPaquete.cargarPaquetes(tPaquetes,txtBuscar.getText()); //retornar entero si hay datos y hacer if para saber si cargar o no productos
+
+    private void cargarBusqueda() {
+        if (TablaPaquete.cargarPaquetes(tPaquetes, txtBuscar.getText()) <= 0) {//retornar entero si hay datos y hacer if para saber si cargar o no productos
+            cargarProductos(0);
+        }
     }
-     
+
     private void llenarCampos(PaqueteVO paquete) {
         txtDescripcion.setText(paquete.getDescripcion());
-        txtDescuento.setText(paquete.getDescuento()+"");
-        txtSubtotal.setText(paquete.getSuma()+"");
-        txtPrecio.setText(paquete.getPrecio()+ "");
+        txtDescuento.setText(paquete.getDescuento() + "");
+        txtSubtotal.setText(paquete.getSuma() + "");
+        txtPrecio.setText(paquete.getPrecio() + "");
     }
 
     private PaqueteVO obtenerElementoDeFila(int fila) {

@@ -49,8 +49,8 @@ public class TablaPaquete {
         columnModel.getColumn(2).setPreferredWidth(50);
 
     }
-    
-    public static void cargarPaquetes(JTable tabla, String descripcion) {
+
+    public static int cargarPaquetes(JTable tabla, String descripcion) {
 
         tabla.setDefaultRenderer(Object.class, new Render());
         DefaultTableModel dt = new DefaultTableModel() {
@@ -65,23 +65,35 @@ public class TablaPaquete {
 
         PaqueteVO paquete = new PaqueteVO();
         ArrayList<PaqueteVO> list = PaqueteDAO.encontrar(descripcion);
-
-        for (int i = 0; i < list.size(); i++) {
+        if (list.size() > 0) {
+            for (int i = 0; i < list.size(); i++) {
+                Object fila[] = new Object[3];
+                paquete = list.get(i);
+                fila[0] = paquete.getId();
+                fila[1] = paquete.getDescripcion();
+                fila[2] = paquete.getPrecio();
+                dt.addRow(fila);
+            }
+            tabla.setModel(dt);
+            tabla.setRowHeight(60);
+            TableColumnModel columnModel = tabla.getColumnModel();
+            columnModel.getColumn(0).setPreferredWidth(30);
+            columnModel.getColumn(1).setPreferredWidth(190);
+            columnModel.getColumn(2).setPreferredWidth(50);
+        } else {
             Object fila[] = new Object[3];
-            paquete = list.get(i);
-            fila[0] = paquete.getId();
-            fila[1] = paquete.getDescripcion();
-            fila[2] = paquete.getPrecio();
+            fila[0] = "";
+            fila[1] = "";
+            fila[2] = "";
             dt.addRow(fila);
+            tabla.setModel(dt);
+            tabla.setRowHeight(60);
+            TableColumnModel columnModel = tabla.getColumnModel();
+            columnModel.getColumn(0).setPreferredWidth(30);
+            columnModel.getColumn(1).setPreferredWidth(190);
+            columnModel.getColumn(2).setPreferredWidth(50);
         }
-        tabla.setModel(dt);
-        tabla.setRowHeight(60);
-        TableColumnModel columnModel = tabla.getColumnModel();
-        columnModel.getColumn(0).setPreferredWidth(30);
-        columnModel.getColumn(1).setPreferredWidth(190);
-        columnModel.getColumn(2).setPreferredWidth(50);
-
+        return list.size();
     }
-    
-    
+
 }

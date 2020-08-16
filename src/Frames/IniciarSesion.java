@@ -1,4 +1,3 @@
-
 package Frames;
 
 import ClassDAO.UsuarioDAO;
@@ -193,13 +192,12 @@ public class IniciarSesion extends javax.swing.JFrame {
 
     private boolean verificarLogin() {
         if (UsuarioDAO.encontrar(usuario.getUsr()).size() != 0) {
-            UsuarioVO usuarioTmp = UsuarioDAO.encontrar(usuario.getPass()).get(0);
-            /*System.out.println(usuarioTmp.getUser() + " " + usuarioTmp.getPass());
-        System.out.println(usuario.getUser() + " " + usuario.getPass());*/
+            UsuarioVO usuarioTmp = (UsuarioVO)UsuarioDAO.encontrar(usuario.getUsr()).get(0);
             if (usuarioTmp.getPass().equals(usuario.getPass())) {
                 return true;
             }
             return false;
+
         }
         JOptionPane.showMessageDialog(this, "Usuario no registrado");
         return false;

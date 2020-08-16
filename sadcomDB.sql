@@ -99,6 +99,14 @@ create table cotiza_paquete(
 
 insert into usuario values("admin", "admin");
 
+select * from producto join subcategoria on producto.id_subcategoria = subcategoria.id where id_categoria = 1;
+
+SELECT producto.id, descripcion, precio, imagen, id_subcategoria from producto join subcategoria on producto.id_subcategoria = subcategoria.id where id_categoria = 1; #Busca productos en una categoria
+SELECT producto.id, descripcion, precio, imagen, id_subcategoria from producto join subcategoria on producto.id_subcategoria = subcategoria.id where id_categoria = 1 and descripcion like "%%"; #Busca productos en una categoria y like desc
+
+SELECT * from producto 
+where id_subcategoria = 1 and descripcion like "%%"; #Busca productos en una subcategoria y like desccrip
+
 /*insert into producto values
 (null, "SENSOR DE PUERTA", 260),
 (null, "AUDIO DE CRISTAL", 572);

@@ -26,14 +26,26 @@ public class ProductoDAO {
 
     private static final String SQL_UPDATE = "UPDATE producto "
             + " SET descripcion=?, precio=?, imagen=?, id_subcategoria = ? WHERE id=?";
-    
+
     private static final String SQL_UPDATE_WITHOUT_IMAGE = "UPDATE producto "
             + " SET descripcion=?, precio=?,  id_subcategoria = ? WHERE id=?";
 
     private static final String SQL_DELETE = "DELETE FROM producto WHERE id = ?";
-    
+
     private static final String SQL_SELECT_BY_PACKAGE = "SELECT id, descripcion, precio, imagen, id_subcategoria "
             + " FROM empaquetado join producto on empaquetado.id_producto = producto.id WHERE id_paquete = ?";
+//  --------------------------------------------------------------------------------------------------------------------------------------------
+    private static final String SQL_SELECT_ON_CATEGORY = "SELECT producto.id, descripcion, precio, imagen, id_subcategoria "
+            + " FROM producto join subcategoria on producto.id_subcategoria = subcategoria.id where id_categoria = ?";
+
+    private static final String SQL_SELECT_BY_CATEGORY_AND_DESC = "SELECT id, descripcion, precio, imagen, id_subcategoria " //Este va dentro del método
+            + " FROM producto join subcategoria on producto.id_subcategoria = subcategoria.id where id_categoria = ? and descripcion like \"%%\"";
+
+    private static final String SQL_SELECT_ON_SUBCATEGORY = "SELECT * "
+            + " FROM producto where id_subcategoria = ?";
+
+    private static final String SQL_SELECT_BY_SUBCATEGORY_AND_DESC = "SELECT * " //Este va dentro del metodo
+            + " FROM producto where id_subcategoria = ? and descripcion like \"%%\"";
 
     public static ArrayList<ProductoVO> listar() {
         Connection conn = null;
@@ -94,7 +106,39 @@ public class ProductoDAO {
         }
         return productos;
     }
-    
+
+    public static ArrayList<ProductoVO> encontrarEnCategoria(int idCategoria, String nombre) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ProductoVO producto = null;
+        ArrayList<ProductoVO> productos = new ArrayList<>();
+        try {
+            conn = Conexion.getConnection();
+            stmt = conn.prepareStatement("SELECT producto.id, descripcion, precio, imagen, id_subcategoria "
+                    + " FROM producto join subcategoria on producto.id_subcategoria = subcategoria.id where id_categoria = ? and descripcion like '%" + nombre + "%'");
+            stmt.setInt(1, idCategoria);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                int idP = rs.getInt("id");
+                String descripcion = rs.getString("descripcion");
+                double precio = rs.getDouble("precio");
+                byte[] imagen = rs.getBytes("imagen");
+                int subcategoria = rs.getInt("id_subcategoria");
+
+                producto = new ProductoVO(idP, descripcion, precio, imagen, subcategoria);
+                productos.add(producto);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(stmt);
+            Conexion.close(conn);
+        }
+        return productos;
+    }
+
     public static ArrayList<ProductoVO> encontrarEnPaquete(int idPaquete) {
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -125,7 +169,101 @@ public class ProductoDAO {
         }
         return productos;
     }
-    
+
+    public static ArrayList<ProductoVO> encontrarEnCategoria(int idCategoria) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ProductoVO producto = null;
+        ArrayList<ProductoVO> productos = new ArrayList<>();
+        try {
+            conn = Conexion.getConnection();
+            stmt = conn.prepareStatement(SQL_SELECT_ON_CATEGORY);
+            stmt.setInt(1, idCategoria);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                int idP = rs.getInt("id");
+                String descripcion = rs.getString("descripcion");
+                double precio = rs.getDouble("precio");
+                byte[] imagen = rs.getBytes("imagen");
+                int subcategoria = rs.getInt("id_subcategoria");
+
+                producto = new ProductoVO(idP, descripcion, precio, imagen, subcategoria);
+                productos.add(producto);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(stmt);
+            Conexion.close(conn);
+        }
+        return productos;
+    }
+
+    public static ArrayList<ProductoVO> encontrarEnSubcategoria(int idSubcategoria) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ProductoVO producto = null;
+        ArrayList<ProductoVO> productos = new ArrayList<>();
+        try {
+            conn = Conexion.getConnection();
+            stmt = conn.prepareStatement(SQL_SELECT_ON_SUBCATEGORY);
+            stmt.setInt(1, idSubcategoria);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                int idP = rs.getInt("id");
+                String descripcion = rs.getString("descripcion");
+                double precio = rs.getDouble("precio");
+                byte[] imagen = rs.getBytes("imagen");
+                int subcategoria = rs.getInt("id_subcategoria");
+
+                producto = new ProductoVO(idP, descripcion, precio, imagen, subcategoria);
+                productos.add(producto);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(stmt);
+            Conexion.close(conn);
+        }
+        return productos;
+    }
+
+    public static ArrayList<ProductoVO> encontrarEnSubcategoria(int idSubcategoria, String nombre) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ProductoVO producto = null;
+        ArrayList<ProductoVO> productos = new ArrayList<>();
+        try {
+            conn = Conexion.getConnection();
+            stmt = conn.prepareStatement("SELECT * "
+                    + " FROM producto where id_subcategoria = ? and descripcion like '%" + nombre + "%'");
+            stmt.setInt(1, idSubcategoria);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                int idP = rs.getInt("id");
+                String descripcion = rs.getString("descripcion");
+                double precio = rs.getDouble("precio");
+                byte[] imagen = rs.getBytes("imagen");
+                int subcategoria = rs.getInt("id_subcategoria");
+
+                producto = new ProductoVO(idP, descripcion, precio, imagen, subcategoria);
+                productos.add(producto);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(stmt);
+            Conexion.close(conn);
+        }
+        return productos;
+    }
+
     public static ProductoVO encontrar(int id) {
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -145,7 +283,6 @@ public class ProductoDAO {
             byte[] imagen = rs.getBytes("imagen");
             int subcategoria = rs.getInt("id_subcategoria");
             producto = new ProductoVO(idP, descripcion, precio, imagen, subcategoria);
-
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         } finally {
@@ -156,8 +293,6 @@ public class ProductoDAO {
         return producto;
     }
 
-    
-    
     public static int insertar(ProductoVO producto) {
         Connection conn = null;
         PreparedStatement stmt = null;
