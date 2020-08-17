@@ -1,14 +1,17 @@
 package Frames;
 
 import ClassDAO.CategoriaDAO;
-import ClassDAO.EmpaquetadoDAO;
+import ClassDAO.CotizaProductoDAO;
 import ClassDAO.PaqueteDAO;
 import ClassDAO.ProductoDAO;
 import ClassDAO.SubcategoriaDAO;
 import ClassVO.CategoriaVO;
+import ClassVO.CotizaProductoVO;
+import ClassVO.CotizacionVO;
 import ClassVO.PaqueteVO;
 import ClassVO.ProductoVO;
 import ClassVO.SubcategoriaVO;
+import Tables.TablaCotizaProducto;
 import Tables.TablaProducto;
 import com.sun.awt.AWTUtilities;
 import java.awt.Shape;
@@ -16,30 +19,20 @@ import java.awt.geom.RoundRectangle2D;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
-public class PaquetesCreation extends javax.swing.JFrame {
+public class CotizarProducto extends javax.swing.JFrame {
 
-    private PaqueteVO modificar;
-    private PaqueteVO nuevo;
-    private boolean editar;
+    private HacerCotizacion padre;
+    private CotizacionVO cotizacion;
 
-    public void setModificar(PaqueteVO modificar) {
-        this.modificar = modificar;
+    public void setPadre(HacerCotizacion padre) {
+        this.padre = padre;
     }
 
-    public void setEditar(boolean editar) {
-        this.editar = editar;
-        if (editar) {
-            cargarProductos(modificar.getId());
-            llenarCampos(modificar);
-            calcularPrecios();
-        } else {//Si se va a crear un nuevo paquete
-            nuevo = new PaqueteVO(0, "nuevoTemporal123", 0, 0, 0);
-            System.out.println(PaqueteDAO.insertar(nuevo) + "");
-            nuevo = encontrarCreado();
-        }
+    public void setCotizacion(CotizacionVO cotizacion) {
+        this.cotizacion = cotizacion;
     }
 
-    public PaquetesCreation() {
+    public CotizarProducto() {
         initComponents();
         setLocationRelativeTo(null); //Centra la vantana en la pantalla
         Shape forma = new RoundRectangle2D.Double(0, 0, getBounds().width, getBounds().height, 20, 20);
@@ -49,21 +42,13 @@ public class PaquetesCreation extends javax.swing.JFrame {
         btnAgregar.setEnabled(false);
         btnEliminar.setEnabled(false);
         txtSubtotal.setEditable(false);
-        txtPrecio.setEditable(false);
     }
 
-    private void calcularPrecios() {
+    public void calcularPrecios() {
         if (hayEnTabla()) {
-            if (esNumeroPorcentaje()) {
-                txtSubtotal.setText(sumarColumnas() + "");
-                txtPrecio.setText(Double.parseDouble(txtSubtotal.getText()) * (1 - Double.parseDouble(txtDescuento.getText()) / 100) + "");
-            } else {
-                txtSubtotal.setText(sumarColumnas() + "");
-                txtPrecio.setText(txtSubtotal.getText() + "");
-            }
-        } else {
             txtSubtotal.setText(sumarColumnas() + "");
-            txtPrecio.setText(txtSubtotal.getText() + "");
+        } else {
+            txtSubtotal.setText(0 + "");
         }
     }
 
@@ -74,20 +59,11 @@ public class PaquetesCreation extends javax.swing.JFrame {
         return false;
     }
 
-    private boolean esNumeroPorcentaje() {
-        try {
-            Double.parseDouble(txtDescuento.getText());
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
     private double sumarColumnas() {
         double suma = 0;
         if (TAgregados.getRowCount() != 0) {
             for (int i = 0; i < TAgregados.getRowCount(); i++) {
-                suma += Double.parseDouble(TAgregados.getValueAt(i, 2).toString());
+                suma += (Double.parseDouble(TAgregados.getValueAt(i, 2).toString()) * Double.parseDouble(TAgregados.getValueAt(i, 3).toString()));
             }
         }
 
@@ -117,33 +93,23 @@ public class PaquetesCreation extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel16 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jSeparator16 = new javax.swing.JSeparator();
-        jSeparator17 = new javax.swing.JSeparator();
         jSeparator18 = new javax.swing.JSeparator();
         jLabel33 = new javax.swing.JLabel();
         btnEliminar = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TAgregados = new javax.swing.JTable();
-        btnCancelar = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
         txtSubtotal = new javax.swing.JTextField();
         txtBuscar = new javax.swing.JTextField();
-        txtDescripcion = new javax.swing.JTextField();
         txtId6 = new javax.swing.JTextField();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        jSeparator19 = new javax.swing.JSeparator();
-        jSeparator20 = new javax.swing.JSeparator();
-        txtPrecio = new javax.swing.JTextField();
-        txtDescuento = new javax.swing.JTextField();
         txtId7 = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         comboSubCat = new javax.swing.JComboBox<>();
         comboCategoria = new javax.swing.JComboBox<>();
-        btnNuevo = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tBusqueda = new javax.swing.JTable();
         btnAgregar = new javax.swing.JButton();
@@ -180,26 +146,17 @@ public class PaquetesCreation extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(238, 238, 238));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel16.setBackground(new java.awt.Color(103, 65, 114));
-        jLabel16.setFont(new java.awt.Font("Gotham Thin", 0, 18)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(103, 65, 114));
-        jLabel16.setText("Descripción");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 140, -1, -1));
-
         jLabel21.setBackground(new java.awt.Color(103, 65, 114));
         jLabel21.setFont(new java.awt.Font("Gotham Thin", 0, 18)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(103, 65, 114));
         jLabel21.setText("Subtotal");
-        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 230, -1, -1));
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 140, -1, -1));
 
         jSeparator16.setBackground(new java.awt.Color(1, 50, 67));
         jPanel1.add(jSeparator16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 370, 10));
 
-        jSeparator17.setBackground(new java.awt.Color(1, 50, 67));
-        jPanel1.add(jSeparator17, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 200, 170, 10));
-
         jSeparator18.setBackground(new java.awt.Color(1, 50, 67));
-        jPanel1.add(jSeparator18, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 290, 170, 10));
+        jPanel1.add(jSeparator18, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 200, 170, 10));
 
         jLabel33.setBackground(new java.awt.Color(103, 65, 114));
         jLabel33.setFont(new java.awt.Font("Gotham Thin", 0, 18)); // NOI18N
@@ -232,7 +189,7 @@ public class PaquetesCreation extends javax.swing.JFrame {
         jLabel17.setBackground(new java.awt.Color(103, 128, 159));
         jLabel17.setFont(new java.awt.Font("Gotham Thin", 0, 18)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(103, 128, 159));
-        jLabel17.setText("Paquete");
+        jLabel17.setText("Cotizacion");
         jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 100, -1, -1));
 
         TAgregados.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -244,33 +201,33 @@ public class PaquetesCreation extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 340, 440));
 
-        btnCancelar.setBackground(new java.awt.Color(1, 50, 67));
-        btnCancelar.setFont(new java.awt.Font("Gotham Extra Light", 0, 18)); // NOI18N
-        btnCancelar.setForeground(new java.awt.Color(1, 50, 67));
-        btnCancelar.setText("Cancelar");
-        btnCancelar.setBorderPainted(false);
-        btnCancelar.setContentAreaFilled(false);
-        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCancelar.setFocusPainted(false);
-        btnCancelar.setRequestFocusEnabled(false);
-        btnCancelar.setVerifyInputWhenFocusTarget(false);
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+        btnGuardar.setBackground(new java.awt.Color(1, 50, 67));
+        btnGuardar.setFont(new java.awt.Font("Gotham Extra Light", 0, 18)); // NOI18N
+        btnGuardar.setForeground(new java.awt.Color(1, 50, 67));
+        btnGuardar.setText("Guardar");
+        btnGuardar.setBorderPainted(false);
+        btnGuardar.setContentAreaFilled(false);
+        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGuardar.setFocusPainted(false);
+        btnGuardar.setRequestFocusEnabled(false);
+        btnGuardar.setVerifyInputWhenFocusTarget(false);
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarActionPerformed(evt);
+                btnGuardarActionPerformed(evt);
             }
         });
-        btnCancelar.addKeyListener(new java.awt.event.KeyAdapter() {
+        btnGuardar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnCancelarKeyPressed(evt);
+                btnGuardarKeyPressed(evt);
             }
         });
-        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 570, 110, 40));
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 240, 110, 40));
 
         txtSubtotal.setBackground(new java.awt.Color(238, 238, 238));
         txtSubtotal.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
         txtSubtotal.setForeground(new java.awt.Color(1, 50, 67));
         txtSubtotal.setBorder(null);
-        jPanel1.add(txtSubtotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 260, 140, 30));
+        jPanel1.add(txtSubtotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 170, 140, 30));
 
         txtBuscar.setBackground(new java.awt.Color(238, 238, 238));
         txtBuscar.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
@@ -288,52 +245,11 @@ public class PaquetesCreation extends javax.swing.JFrame {
         });
         jPanel1.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 340, 30));
 
-        txtDescripcion.setBackground(new java.awt.Color(238, 238, 238));
-        txtDescripcion.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
-        txtDescripcion.setForeground(new java.awt.Color(1, 50, 67));
-        txtDescripcion.setBorder(null);
-        jPanel1.add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 170, 140, 30));
-
         txtId6.setBackground(new java.awt.Color(238, 238, 238));
         txtId6.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
         txtId6.setForeground(new java.awt.Color(1, 50, 67));
         txtId6.setBorder(null);
-        jPanel1.add(txtId6, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 260, 140, 30));
-
-        jLabel18.setBackground(new java.awt.Color(103, 65, 114));
-        jLabel18.setFont(new java.awt.Font("Gotham Thin", 0, 18)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(103, 65, 114));
-        jLabel18.setText("Descuento (%)");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 320, -1, -1));
-
-        jLabel22.setBackground(new java.awt.Color(103, 65, 114));
-        jLabel22.setFont(new java.awt.Font("Gotham Thin", 0, 18)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(103, 65, 114));
-        jLabel22.setText("Precio");
-        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 420, -1, -1));
-
-        jSeparator19.setBackground(new java.awt.Color(1, 50, 67));
-        jPanel1.add(jSeparator19, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 380, 170, 10));
-
-        jSeparator20.setBackground(new java.awt.Color(1, 50, 67));
-        jPanel1.add(jSeparator20, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 480, 170, 10));
-
-        txtPrecio.setBackground(new java.awt.Color(238, 238, 238));
-        txtPrecio.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
-        txtPrecio.setForeground(new java.awt.Color(1, 50, 67));
-        txtPrecio.setBorder(null);
-        jPanel1.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 450, 140, 30));
-
-        txtDescuento.setBackground(new java.awt.Color(238, 238, 238));
-        txtDescuento.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
-        txtDescuento.setForeground(new java.awt.Color(1, 50, 67));
-        txtDescuento.setBorder(null);
-        txtDescuento.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtDescuentoKeyReleased(evt);
-            }
-        });
-        jPanel1.add(txtDescuento, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 350, 140, 30));
+        jPanel1.add(txtId6, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 170, 140, 30));
 
         txtId7.setBackground(new java.awt.Color(238, 238, 238));
         txtId7.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
@@ -370,28 +286,6 @@ public class PaquetesCreation extends javax.swing.JFrame {
             }
         });
         jPanel1.add(comboCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, 160, -1));
-
-        btnNuevo.setBackground(new java.awt.Color(1, 50, 67));
-        btnNuevo.setFont(new java.awt.Font("Gotham Extra Light", 0, 18)); // NOI18N
-        btnNuevo.setForeground(new java.awt.Color(1, 50, 67));
-        btnNuevo.setText("Guardar");
-        btnNuevo.setBorderPainted(false);
-        btnNuevo.setContentAreaFilled(false);
-        btnNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnNuevo.setFocusPainted(false);
-        btnNuevo.setRequestFocusEnabled(false);
-        btnNuevo.setVerifyInputWhenFocusTarget(false);
-        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNuevoActionPerformed(evt);
-            }
-        });
-        btnNuevo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnNuevoKeyPressed(evt);
-            }
-        });
-        jPanel1.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 510, 110, 40));
 
         tBusqueda.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -431,16 +325,7 @@ public class PaquetesCreation extends javax.swing.JFrame {
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         // TODO add your handling code here:
-        if (editar) {
-            if (TAgregados.getRowCount() != 0) {
-                cerrar();
-            }
-        } else {
-            if (deseaSalir() == 0) {
-                PaqueteDAO.eliminar(nuevo);
-                System.exit(0);
-            }
-        }
+        cerrar();
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void cerrar() {
@@ -466,14 +351,7 @@ public class PaquetesCreation extends javax.swing.JFrame {
     }
 
     private PaqueteVO obtenerLlenado(int idPaquete) {
-        String descripcion = txtDescripcion.getText();
-        double suma = Double.parseDouble(txtSubtotal.getText());
-        int descuento = 0;
-        if (txtDescuento.getText().length() != 0) {
-            descuento = Integer.parseInt(txtDescuento.getText());
-        }
-        double precio = Double.parseDouble(txtPrecio.getText());
-        return new PaqueteVO(idPaquete, descripcion, suma, descuento, precio);
+        return null;
     }
 
     /*
@@ -572,21 +450,17 @@ public class PaquetesCreation extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtBuscarKeyReleased
 
-    private void btnCancelarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnCancelarKeyPressed
+    private void btnGuardarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnGuardarKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnCancelarKeyPressed
+    }//GEN-LAST:event_btnGuardarKeyPressed
 
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-        if (editar) {
-            if (TAgregados.getRowCount() != 0) {
-                regresar();
-            }
-        } else {
-            PaqueteDAO.eliminar(nuevo);
-            regresar();
-        }
-    }//GEN-LAST:event_btnCancelarActionPerformed
+        padre.setVisible(true);
+        padre.cargarProductos(cotizacion.getId());
+        padre.calcularPreciosProducto();
+        dispose();
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void comboSubCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboSubCatActionPerformed
         // TODO add your handling code here:
@@ -666,22 +540,14 @@ public class PaquetesCreation extends javax.swing.JFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
-
         ProductoVO obtenido = obtenerElementoDeAgregados(TAgregados.getSelectedRow());
         if (obtenido.getId() != -1) {
-            if (editar) {
-                if (EmpaquetadoDAO.desempaquetar(obtenido, modificar) != 0) {
-                    cargarProductos(modificar.getId());
-
-                } else {
-                    cargarProductos(0);
-                }
-            } else {
-                if (EmpaquetadoDAO.desempaquetar(obtenido, nuevo) != 0) {
-                    cargarProductos(nuevo.getId());
-                } else {
-                    cargarProductos(0);
-                }
+            CotizaProductoVO temp = new CotizaProductoVO();
+            temp.setIdProducto(obtenido.getId());
+            temp.setIdCotizacion(cotizacion.getId());
+            temp.setCantidad(Integer.parseInt(TAgregados.getValueAt(TAgregados.getSelectedRow(), 3).toString()));
+            if (CotizaProductoDAO.eliminar(temp) != 0) {
+                cargarProductos(cotizacion.getId());
             }
             calcularPrecios();
         } else {
@@ -689,46 +555,6 @@ public class PaquetesCreation extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-        // TODO add your handling code here:
-        if (datosValidos()) {
-            if (editar) {
-                if (guardar(modificar.getId()) > 0) {
-                    JOptionPane.showMessageDialog(this, "El paquete ha sido actualizado correctamente");
-                } else {
-                    JOptionPane.showMessageDialog(this, "Ha ocurrido un error al actualizar el paquete");
-                }
-            } else if (guardar(nuevo.getId()) > 0) {
-                JOptionPane.showMessageDialog(this, "El paquete ha sido creado correctamente");
-            } else {
-                JOptionPane.showMessageDialog(this, "Ha ocurrido un error al crear el paquete");
-            }
-            Paquetes paquetes = new Paquetes();
-            paquetes.setVisible(true);
-            dispose();
-        }
-    }//GEN-LAST:event_btnNuevoActionPerformed
-
-    private boolean datosValidos() {
-
-        try {
-            int descuento = 200;
-            double subtotal = Double.parseDouble(txtSubtotal.getText());
-            double total = Double.parseDouble(txtPrecio.getText());
-            if (txtDescuento.getText().length() != 0) {
-                descuento = Integer.parseInt(txtDescuento.getText());
-            } else {
-                descuento = 0;
-            }
-            return txtDescripcion.getText().length() != 0 && total != 0 && subtotal != 0 && descuento <= 100 && descuento >= 0;
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-    private void btnNuevoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnNuevoKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnNuevoKeyPressed
 
     private void tBusquedaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tBusquedaMouseClicked
         // TODO add your handling code here:
@@ -739,17 +565,22 @@ public class PaquetesCreation extends javax.swing.JFrame {
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
         if (tBusqueda.getSelectedRow() != -1) {
-             ProductoVO obtenido = obtenerElementoDeFila(tBusqueda.getSelectedRow());
-            if (editar) {
-                PaqueteVO actual = modificar;
-                System.out.println(EmpaquetadoDAO.empaquetar(obtenido, actual));
-                cargarProductos(modificar.getId());
-            } else {
-                System.out.println(EmpaquetadoDAO.empaquetar(obtenido, nuevo));
-                cargarProductos(nuevo.getId());
+            ProductoVO obtenido = obtenerElementoDeFila(tBusqueda.getSelectedRow());
+            try {
+                CotizaProductoVO cotizarProducto = new CotizaProductoVO();
+                int cantidad = Integer.parseInt(JOptionPane.showInputDialog(null, "Cantidad"));
+                if (cantidad > 0) {
+                    cotizarProducto.setIdCotizacion(cotizacion.getId());
+                    cotizarProducto.setIdProducto(obtenido.getId());
+                    cotizarProducto.setCantidad(cantidad);
+                    System.out.println(CotizaProductoDAO.insertar(cotizarProducto));
+                    cargarProductos(cotizacion.getId());
+                    calcularPrecios();
+                }
+            } catch (Exception e) {
             }
-            calcularPrecios();
         }
+
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private PaqueteVO encontrarCreado() {
@@ -761,26 +592,14 @@ public class PaquetesCreation extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAgregarKeyPressed
 
-    private void txtDescuentoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescuentoKeyReleased
-        // TODO add your handling code here:
-        calcularPrecios();
-    }//GEN-LAST:event_txtDescuentoKeyReleased
-
-    private void cargarProductos(int idPaquete) {
-        TablaProducto.cargarProductos(TAgregados, idPaquete);
+    public void cargarProductos(int idCotizacion) {
+        TablaCotizaProducto.cargarProductos(TAgregados, idCotizacion);
     }
 
     private void cargarBusqueda() {
         /*if (TablaPaquete.cargarPaquetes(tPaquetes, txtBuscar.getText()) <= 0) {//retornar entero si hay datos y hacer if para saber si cargar o no productos
             cargarProductos(0);
         }*/
-    }
-
-    private void llenarCampos(PaqueteVO paquete) {
-        txtDescripcion.setText(paquete.getDescripcion());
-        txtDescuento.setText(paquete.getDescuento() + "");
-        txtSubtotal.setText(paquete.getSuma() + "");
-        txtPrecio.setText(paquete.getPrecio() + "");
     }
 
     private void cargarCategorias() {
@@ -848,14 +667,30 @@ public class PaquetesCreation extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PaquetesCreation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CotizarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PaquetesCreation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CotizarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PaquetesCreation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CotizarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PaquetesCreation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CotizarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -876,7 +711,7 @@ public class PaquetesCreation extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PaquetesCreation().setVisible(true);
+                new CotizarProducto().setVisible(true);
             }
         });
     }
@@ -884,16 +719,12 @@ public class PaquetesCreation extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TAgregados;
     private javax.swing.JButton btnAgregar;
-    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnNuevo;
+    private javax.swing.JButton btnGuardar;
     private javax.swing.JComboBox<String> comboCategoria;
     private javax.swing.JComboBox<String> comboSubCat;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel33;
@@ -904,17 +735,11 @@ public class PaquetesCreation extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator16;
-    private javax.swing.JSeparator jSeparator17;
     private javax.swing.JSeparator jSeparator18;
-    private javax.swing.JSeparator jSeparator19;
-    private javax.swing.JSeparator jSeparator20;
     private javax.swing.JTable tBusqueda;
     private javax.swing.JTextField txtBuscar;
-    private javax.swing.JTextField txtDescripcion;
-    private javax.swing.JTextField txtDescuento;
     private javax.swing.JTextField txtId6;
     private javax.swing.JTextField txtId7;
-    private javax.swing.JTextField txtPrecio;
     private javax.swing.JTextField txtSubtotal;
     // End of variables declaration//GEN-END:variables
 }

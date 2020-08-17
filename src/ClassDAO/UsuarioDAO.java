@@ -21,7 +21,7 @@ public class UsuarioDAO {
             + " VALUES(?, ?)";
 
     private static final String SQL_UPDATE = "UPDATE usuario "
-            + " SET pass=? WHERE usr=?";
+            + " SET pass = ? WHERE usr = ?";
 
     private static final String SQL_DELETE = "DELETE FROM usuario WHERE usr = ?";
 
@@ -104,14 +104,15 @@ public class UsuarioDAO {
     }
 
     public static int actualizar(UsuarioVO usuario) {
+        System.out.println(usuario.getUsr() + " " + usuario.getPass());
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_UPDATE);
-            stmt.setString(1, usuario.getUsr());
-            stmt.setString(2, usuario.getPass());
+            stmt.setString(2, usuario.getUsr());
+            stmt.setString(1, usuario.getPass());
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);

@@ -12,7 +12,6 @@ public class Menu extends javax.swing.JFrame {
     private Registrar registrar = new Registrar();
     private Reportes reportes = new Reportes();
      */
-    
     public Menu() {
         initComponents();
         setLocationRelativeTo(null); //Centra la vantana en la pantalla
@@ -37,6 +36,8 @@ public class Menu extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -89,7 +90,7 @@ public class Menu extends javax.swing.JFrame {
                 jLabel6MouseExited(evt);
             }
         });
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 260, 180, 160));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 260, 180, 160));
 
         jLabel7.setBackground(new java.awt.Color(51, 110, 123));
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -116,7 +117,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel12.setForeground(new java.awt.Color(1, 50, 67));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("Salir");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 380, 180, 40));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 380, 180, 40));
 
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel13.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -134,7 +135,7 @@ public class Menu extends javax.swing.JFrame {
                 jLabel13MouseExited(evt);
             }
         });
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 50, 180, 160));
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 50, 180, 160));
 
         jLabel14.setBackground(new java.awt.Color(51, 110, 123));
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -154,7 +155,7 @@ public class Menu extends javax.swing.JFrame {
                 jLabel14MouseExited(evt);
             }
         });
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 170, 180, 40));
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 170, 180, 40));
 
         jLabel9.setBackground(new java.awt.Color(51, 110, 123));
         jLabel9.setForeground(new java.awt.Color(51, 110, 123));
@@ -201,14 +202,14 @@ public class Menu extends javax.swing.JFrame {
                 jLabel10MouseExited(evt);
             }
         });
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, 180, 160));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 180, 160));
 
         jLabel16.setBackground(new java.awt.Color(51, 110, 123));
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(1, 50, 67));
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel16.setText("Paquetes");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 380, 180, 40));
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 380, 180, 40));
 
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel17.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -226,7 +227,7 @@ public class Menu extends javax.swing.JFrame {
                 jLabel17MouseExited(evt);
             }
         });
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 180, 160));
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 50, 180, 160));
 
         jLabel18.setBackground(new java.awt.Color(51, 110, 123));
         jLabel18.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -246,9 +247,36 @@ public class Menu extends javax.swing.JFrame {
                 jLabel18MouseExited(evt);
             }
         });
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, 180, 40));
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 170, 180, 40));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 700, 470));
+        jLabel11.setBackground(new java.awt.Color(51, 110, 123));
+        jLabel11.setForeground(new java.awt.Color(51, 110, 123));
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jLabel11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel11.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jLabel11MouseMoved(evt);
+            }
+        });
+        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel11MouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel11MouseExited(evt);
+            }
+        });
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 260, 180, 160));
+
+        jLabel19.setBackground(new java.awt.Color(51, 110, 123));
+        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(1, 50, 67));
+        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel19.setText("Usuarios");
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 380, 180, 40));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 900, 470));
 
         jPanel2.setBackground(new java.awt.Color(52, 73, 94));
         jPanel2.setForeground(new java.awt.Color(52, 73, 94));
@@ -260,7 +288,7 @@ public class Menu extends javax.swing.JFrame {
                 jLabel1MouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 0, 38, 40));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 0, 38, 40));
 
         jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -268,9 +296,9 @@ public class Menu extends javax.swing.JFrame {
                 jLabel8MouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 0, 35, 40));
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 0, 35, 40));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 40));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -316,8 +344,8 @@ public class Menu extends javax.swing.JFrame {
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         // TODO add your handling code here:
-        /*cliente.setMenu(this);
-        cliente.setVisible(true);*/
+        HacerCotizacion hacerCotizacion = new HacerCotizacion();
+        hacerCotizacion.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel2MouseClicked
 
@@ -335,7 +363,7 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         /*usuarios.setMenu(this);
         usuarios.setVisible(true);*/
-        Categorias categorias =  new Categorias();
+        Categorias categorias = new Categorias();
         categorias.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel13MouseClicked
@@ -347,9 +375,9 @@ public class Menu extends javax.swing.JFrame {
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
         // TODO add your handling code here:
-        /* reportes.setMenu(this);
-        reportes.setVisible(true);*/
-        dispose();
+         verCotizaciones verCot = new verCotizaciones();
+         verCot.setVisible(true);
+         dispose();
     }//GEN-LAST:event_jLabel9MouseClicked
 
     private void jLabel9MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseMoved
@@ -403,19 +431,19 @@ public class Menu extends javax.swing.JFrame {
 
     private void jLabel17MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel17MouseMoved
         // TODO add your handling code here:
-                jLabel17.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        jLabel17.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
     }//GEN-LAST:event_jLabel17MouseMoved
 
     private void jLabel17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel17MouseClicked
         // TODO add your handling code here:
-        Productos productos =  new Productos();
+        Productos productos = new Productos();
         productos.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel17MouseClicked
 
     private void jLabel17MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel17MouseExited
         // TODO add your handling code here:
-                jLabel17.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(129, 207, 224)));
+        jLabel17.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(129, 207, 224)));
     }//GEN-LAST:event_jLabel17MouseExited
 
     private void jLabel18MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel18MouseMoved
@@ -429,6 +457,23 @@ public class Menu extends javax.swing.JFrame {
     private void jLabel18MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel18MouseExited
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel18MouseExited
+
+    private void jLabel11MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseMoved
+        // TODO add your handling code here:
+        jLabel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+    }//GEN-LAST:event_jLabel11MouseMoved
+
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+        // TODO add your handling code here:
+        Usuarios usuarios = new Usuarios();
+        usuarios.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jLabel11MouseClicked
+
+    private void jLabel11MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseExited
+        // TODO add your handling code here:
+        jLabel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(129, 207, 224)));
+    }//GEN-LAST:event_jLabel11MouseExited
 
     private void cerrar() {
         int dialog = JOptionPane.YES_NO_OPTION;
@@ -476,6 +521,7 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -483,6 +529,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
