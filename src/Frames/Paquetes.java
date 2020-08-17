@@ -62,7 +62,6 @@ public class Paquetes extends javax.swing.JFrame {
         txtBuscar = new javax.swing.JTextField();
         txtDescripcion = new javax.swing.JTextField();
         txtId6 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
         btnLimpiar = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
@@ -73,6 +72,16 @@ public class Paquetes extends javax.swing.JFrame {
         txtId7 = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         tPaquetes = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -110,28 +119,28 @@ public class Paquetes extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("Gotham Thin", 0, 18)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(103, 65, 114));
         jLabel16.setText("Descripción");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 120, -1, -1));
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 60, -1, -1));
 
         jLabel21.setBackground(new java.awt.Color(103, 65, 114));
         jLabel21.setFont(new java.awt.Font("Gotham Thin", 0, 18)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(103, 65, 114));
         jLabel21.setText("Subtotal");
-        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 210, -1, -1));
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 150, -1, -1));
 
         jSeparator16.setBackground(new java.awt.Color(1, 50, 67));
-        jPanel1.add(jSeparator16, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 60, 370, 10));
+        jPanel1.add(jSeparator16, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 90, 370, 10));
 
         jSeparator17.setBackground(new java.awt.Color(1, 50, 67));
-        jPanel1.add(jSeparator17, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 180, 170, 10));
+        jPanel1.add(jSeparator17, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 120, 170, 10));
 
         jSeparator18.setBackground(new java.awt.Color(1, 50, 67));
-        jPanel1.add(jSeparator18, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 270, 170, 10));
+        jPanel1.add(jSeparator18, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 210, 170, 10));
 
         jLabel33.setBackground(new java.awt.Color(103, 65, 114));
         jLabel33.setFont(new java.awt.Font("Gotham Thin", 0, 18)); // NOI18N
         jLabel33.setForeground(new java.awt.Color(103, 65, 114));
         jLabel33.setText("Buscar");
-        jPanel1.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, -1, -1));
+        jPanel1.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, -1, -1));
 
         btnEliminar.setBackground(new java.awt.Color(1, 50, 67));
         btnEliminar.setFont(new java.awt.Font("Gotham Extra Light", 0, 18)); // NOI18N
@@ -153,13 +162,13 @@ public class Paquetes extends javax.swing.JFrame {
                 btnEliminarKeyPressed(evt);
             }
         });
-        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 550, 110, 40));
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 530, 110, 70));
 
         jLabel17.setBackground(new java.awt.Color(103, 128, 159));
         jLabel17.setFont(new java.awt.Font("Gotham Thin", 0, 18)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(103, 128, 159));
         jLabel17.setText("Paquete");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 80, -1, -1));
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 20, -1, -1));
 
         TProductos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -190,7 +199,7 @@ public class Paquetes extends javax.swing.JFrame {
                 btnNuevoKeyPressed(evt);
             }
         });
-        jPanel1.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 490, 110, 40));
+        jPanel1.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 430, 110, 70));
 
         btnModificar.setBackground(new java.awt.Color(1, 50, 67));
         btnModificar.setFont(new java.awt.Font("Gotham Extra Light", 0, 18)); // NOI18N
@@ -212,13 +221,13 @@ public class Paquetes extends javax.swing.JFrame {
                 btnModificarKeyPressed(evt);
             }
         });
-        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 490, 110, 40));
+        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 430, 110, 70));
 
         txtSubtotal.setBackground(new java.awt.Color(238, 238, 238));
         txtSubtotal.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
         txtSubtotal.setForeground(new java.awt.Color(1, 50, 67));
         txtSubtotal.setBorder(null);
-        jPanel1.add(txtSubtotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 240, 140, 30));
+        jPanel1.add(txtSubtotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 180, 130, 30));
 
         txtBuscar.setBackground(new java.awt.Color(238, 238, 238));
         txtBuscar.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
@@ -234,28 +243,19 @@ public class Paquetes extends javax.swing.JFrame {
                 txtBuscarKeyReleased(evt);
             }
         });
-        jPanel1.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 30, 340, 30));
+        jPanel1.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 330, 30));
 
         txtDescripcion.setBackground(new java.awt.Color(238, 238, 238));
         txtDescripcion.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
         txtDescripcion.setForeground(new java.awt.Color(1, 50, 67));
         txtDescripcion.setBorder(null);
-        jPanel1.add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 150, 140, 30));
+        jPanel1.add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 90, 130, 30));
 
         txtId6.setBackground(new java.awt.Color(238, 238, 238));
         txtId6.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
         txtId6.setForeground(new java.awt.Color(1, 50, 67));
         txtId6.setBorder(null);
-        jPanel1.add(txtId6, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 240, 140, 30));
-
-        jLabel1.setText("Atrás");
-        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
-            }
-        });
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 200, 70));
+        jPanel1.add(txtId6, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 180, 140, 30));
 
         btnLimpiar.setBackground(new java.awt.Color(1, 50, 67));
         btnLimpiar.setFont(new java.awt.Font("Gotham Extra Light", 0, 18)); // NOI18N
@@ -277,43 +277,43 @@ public class Paquetes extends javax.swing.JFrame {
                 btnLimpiarKeyPressed(evt);
             }
         });
-        jPanel1.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 550, 110, 40));
+        jPanel1.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 530, 90, 70));
 
         jLabel18.setBackground(new java.awt.Color(103, 65, 114));
         jLabel18.setFont(new java.awt.Font("Gotham Thin", 0, 18)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(103, 65, 114));
         jLabel18.setText("Descuento (%)");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 300, -1, -1));
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 240, -1, -1));
 
         jLabel22.setBackground(new java.awt.Color(103, 65, 114));
         jLabel22.setFont(new java.awt.Font("Gotham Thin", 0, 18)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(103, 65, 114));
         jLabel22.setText("Precio");
-        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 400, -1, -1));
+        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 340, -1, -1));
 
         jSeparator19.setBackground(new java.awt.Color(1, 50, 67));
-        jPanel1.add(jSeparator19, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 360, 170, 10));
+        jPanel1.add(jSeparator19, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 300, 170, 10));
 
         jSeparator20.setBackground(new java.awt.Color(1, 50, 67));
-        jPanel1.add(jSeparator20, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 460, 170, 10));
+        jPanel1.add(jSeparator20, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 400, 170, 10));
 
         txtPrecio.setBackground(new java.awt.Color(238, 238, 238));
         txtPrecio.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
         txtPrecio.setForeground(new java.awt.Color(1, 50, 67));
         txtPrecio.setBorder(null);
-        jPanel1.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 430, 140, 30));
+        jPanel1.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 370, 130, 30));
 
         txtDescuento.setBackground(new java.awt.Color(238, 238, 238));
         txtDescuento.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
         txtDescuento.setForeground(new java.awt.Color(1, 50, 67));
         txtDescuento.setBorder(null);
-        jPanel1.add(txtDescuento, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 330, 140, 30));
+        jPanel1.add(txtDescuento, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 270, 130, 30));
 
         txtId7.setBackground(new java.awt.Color(238, 238, 238));
         txtId7.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
         txtId7.setForeground(new java.awt.Color(1, 50, 67));
         txtId7.setBorder(null);
-        jPanel1.add(txtId7, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 430, 140, 30));
+        jPanel1.add(txtId7, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 370, 140, 30));
 
         tPaquetes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -323,6 +323,45 @@ public class Paquetes extends javax.swing.JFrame {
         jScrollPane2.setViewportView(tPaquetes);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 250, 440));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/LOGOSAD200.png"))); // NOI18N
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 220, 90));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_average_2_32px.png"))); // NOI18N
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 370, -1, 30));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_search_32px.png"))); // NOI18N
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, -1, 30));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_list_32px.png"))); // NOI18N
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 90, -1, 30));
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_sigma_32px.png"))); // NOI18N
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 180, -1, 30));
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_percentage_32px.png"))); // NOI18N
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 270, -1, 30));
+
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_rounded_rectangle_stroked_127px_1.png"))); // NOI18N
+        jLabel11.setText("jLabel2");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 420, 130, 90));
+
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_rounded_rectangle_stroked_127px_1.png"))); // NOI18N
+        jLabel12.setText("jLabel2");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 420, 120, 90));
+
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_rounded_rectangle_stroked_127px_1.png"))); // NOI18N
+        jLabel13.setText("jLabel2");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 520, 130, 90));
+
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_rounded_rectangle_stroked_127px_1.png"))); // NOI18N
+        jLabel14.setText("jLabel2");
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 520, 120, 90));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 950, 620));
 
@@ -411,13 +450,6 @@ public class Paquetes extends javax.swing.JFrame {
         dispose();
     }
      
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        // TODO add your handling code here:
-        Menu menu = new Menu();
-        menu.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jLabel1MouseClicked
-
 
     private void TProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TProductosMouseClicked
         // TODO add your handling code here:
@@ -511,6 +543,13 @@ public class Paquetes extends javax.swing.JFrame {
         llenarCampos(seleccionado);
         habilitarBotones();
     }//GEN-LAST:event_tPaquetesMouseClicked
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        // TODO add your handling code here:
+        Menu menu = new Menu();
+        menu.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jLabel3MouseClicked
 
     private void cargarProductos(int idPaquete) {
         TablaProducto.cargarProductos(TProductos, idPaquete);
@@ -612,15 +651,24 @@ public class Paquetes extends javax.swing.JFrame {
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnNuevo;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

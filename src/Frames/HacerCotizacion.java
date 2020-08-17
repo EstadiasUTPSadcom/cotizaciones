@@ -152,31 +152,38 @@ public class HacerCotizacion extends javax.swing.JFrame {
         tPaquetes = new javax.swing.JTable();
         txtSubtotal = new javax.swing.JTextField();
         txtDescripcion = new javax.swing.JTextField();
-        txtId6 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jSeparator19 = new javax.swing.JSeparator();
         jSeparator20 = new javax.swing.JSeparator();
         txtTotal = new javax.swing.JTextField();
         txtLugar = new javax.swing.JTextField();
-        txtId7 = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         tProductos = new javax.swing.JTable();
         dateFecha = new com.toedter.calendar.JDateChooser();
         jLabel23 = new javax.swing.JLabel();
         jSeparator21 = new javax.swing.JSeparator();
         txtIva = new javax.swing.JTextField();
-        txtId8 = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         btnEliminar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         btnProductos = new javax.swing.JButton();
         btnPaquetes = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         btnVer = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -214,19 +221,19 @@ public class HacerCotizacion extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("Gotham Thin", 0, 18)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(103, 65, 114));
         jLabel16.setText("Descripción");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
 
         jLabel21.setBackground(new java.awt.Color(103, 65, 114));
         jLabel21.setFont(new java.awt.Font("Gotham Thin", 0, 18)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(103, 65, 114));
         jLabel21.setText("Subtotal");
-        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, -1, -1));
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, -1, -1));
 
         jSeparator17.setBackground(new java.awt.Color(1, 50, 67));
-        jPanel1.add(jSeparator17, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 350, 10));
+        jPanel1.add(jSeparator17, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 390, 10));
 
         jSeparator18.setBackground(new java.awt.Color(1, 50, 67));
-        jPanel1.add(jSeparator18, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 170, 10));
+        jPanel1.add(jSeparator18, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 110, 10));
 
         jLabel33.setBackground(new java.awt.Color(103, 65, 114));
         jLabel33.setFont(new java.awt.Font("Gotham Thin", 0, 18)); // NOI18N
@@ -241,7 +248,7 @@ public class HacerCotizacion extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tPaquetes);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 60, 350, 580));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 60, 350, 580));
 
         txtSubtotal.setBackground(new java.awt.Color(238, 238, 238));
         txtSubtotal.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
@@ -252,7 +259,7 @@ public class HacerCotizacion extends javax.swing.JFrame {
                 txtSubtotalActionPerformed(evt);
             }
         });
-        jPanel1.add(txtSubtotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 140, 30));
+        jPanel1.add(txtSubtotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, 80, 30));
 
         txtDescripcion.setBackground(new java.awt.Color(238, 238, 238));
         txtDescripcion.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
@@ -263,46 +270,31 @@ public class HacerCotizacion extends javax.swing.JFrame {
                 txtDescripcionKeyReleased(evt);
             }
         });
-        jPanel1.add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 320, 30));
-
-        txtId6.setBackground(new java.awt.Color(238, 238, 238));
-        txtId6.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
-        txtId6.setForeground(new java.awt.Color(1, 50, 67));
-        txtId6.setBorder(null);
-        jPanel1.add(txtId6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 140, 30));
-
-        jLabel1.setText("Atrás");
-        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
-            }
-        });
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 200, 70));
+        jPanel1.add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 350, 30));
 
         jLabel18.setBackground(new java.awt.Color(103, 65, 114));
         jLabel18.setFont(new java.awt.Font("Gotham Thin", 0, 18)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(103, 65, 114));
         jLabel18.setText("Negocio o familia");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, -1, -1));
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, -1));
 
         jLabel22.setBackground(new java.awt.Color(103, 65, 114));
         jLabel22.setFont(new java.awt.Font("Gotham Thin", 0, 18)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(103, 65, 114));
         jLabel22.setText("Total");
-        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 560, -1, -1));
+        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 290, -1, -1));
 
         jSeparator19.setBackground(new java.awt.Color(1, 50, 67));
-        jPanel1.add(jSeparator19, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 350, 10));
+        jPanel1.add(jSeparator19, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 390, 10));
 
         jSeparator20.setBackground(new java.awt.Color(1, 50, 67));
-        jPanel1.add(jSeparator20, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 620, 170, 10));
+        jPanel1.add(jSeparator20, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 350, 140, 10));
 
         txtTotal.setBackground(new java.awt.Color(238, 238, 238));
         txtTotal.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
         txtTotal.setForeground(new java.awt.Color(1, 50, 67));
         txtTotal.setBorder(null);
-        jPanel1.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 590, 140, 30));
+        jPanel1.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 320, 100, 30));
 
         txtLugar.setBackground(new java.awt.Color(238, 238, 238));
         txtLugar.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
@@ -318,13 +310,7 @@ public class HacerCotizacion extends javax.swing.JFrame {
                 txtLugarKeyReleased(evt);
             }
         });
-        jPanel1.add(txtLugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, 320, 30));
-
-        txtId7.setBackground(new java.awt.Color(238, 238, 238));
-        txtId7.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
-        txtId7.setForeground(new java.awt.Color(1, 50, 67));
-        txtId7.setBorder(null);
-        jPanel1.add(txtId7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 590, 140, 30));
+        jPanel1.add(txtLugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 350, 30));
 
         tProductos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -333,7 +319,7 @@ public class HacerCotizacion extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tProductos);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 60, 360, 580));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 60, 360, 580));
 
         dateFecha.addContainerListener(new java.awt.event.ContainerAdapter() {
             public void componentAdded(java.awt.event.ContainerEvent evt) {
@@ -364,33 +350,32 @@ public class HacerCotizacion extends javax.swing.JFrame {
         jLabel23.setFont(new java.awt.Font("Gotham Thin", 0, 18)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(103, 65, 114));
         jLabel23.setText("I.V.A.");
-        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 300, -1, -1));
+        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, -1, -1));
 
         jSeparator21.setBackground(new java.awt.Color(1, 50, 67));
-        jPanel1.add(jSeparator21, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 360, 170, 10));
+        jPanel1.add(jSeparator21, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 350, 100, 10));
 
         txtIva.setBackground(new java.awt.Color(238, 238, 238));
         txtIva.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
         txtIva.setForeground(new java.awt.Color(1, 50, 67));
         txtIva.setBorder(null);
+        txtIva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIvaActionPerformed(evt);
+            }
+        });
         txtIva.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtIvaKeyReleased(evt);
             }
         });
-        jPanel1.add(txtIva, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 330, 140, 30));
-
-        txtId8.setBackground(new java.awt.Color(238, 238, 238));
-        txtId8.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
-        txtId8.setForeground(new java.awt.Color(1, 50, 67));
-        txtId8.setBorder(null);
-        jPanel1.add(txtId8, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 330, 140, 30));
+        jPanel1.add(txtIva, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 320, 60, 30));
 
         jLabel19.setBackground(new java.awt.Color(103, 128, 159));
         jLabel19.setFont(new java.awt.Font("Gotham Thin", 0, 18)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(103, 128, 159));
         jLabel19.setText("Paquetes");
-        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 30, -1, -1));
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 30, -1, -1));
 
         jPanel3.setBackground(new java.awt.Color(238, 238, 238));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Editar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14), new java.awt.Color(103, 65, 114))); // NOI18N
@@ -416,7 +401,7 @@ public class HacerCotizacion extends javax.swing.JFrame {
                 btnEliminarKeyPressed(evt);
             }
         });
-        jPanel3.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 110, 40));
+        jPanel3.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 110, 70));
 
         btnModificar.setBackground(new java.awt.Color(1, 50, 67));
         btnModificar.setFont(new java.awt.Font("Gotham Extra Light", 0, 18)); // NOI18N
@@ -438,9 +423,17 @@ public class HacerCotizacion extends javax.swing.JFrame {
                 btnModificarKeyPressed(evt);
             }
         });
-        jPanel3.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 110, 40));
+        jPanel3.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 110, 70));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, 150, 160));
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_rounded_rectangle_stroked_127px_1.png"))); // NOI18N
+        jLabel7.setText("jLabel2");
+        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 120, 90));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_rounded_rectangle_stroked_127px_1.png"))); // NOI18N
+        jLabel3.setText("jLabel2");
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 120, 90));
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, 150, 250));
 
         jPanel4.setBackground(new java.awt.Color(238, 238, 238));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Agregar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14), new java.awt.Color(103, 65, 114))); // NOI18N
@@ -466,7 +459,7 @@ public class HacerCotizacion extends javax.swing.JFrame {
                 btnProductosKeyPressed(evt);
             }
         });
-        jPanel4.add(btnProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 120, 40));
+        jPanel4.add(btnProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 120, 70));
 
         btnPaquetes.setBackground(new java.awt.Color(1, 50, 67));
         btnPaquetes.setFont(new java.awt.Font("Gotham Extra Light", 0, 18)); // NOI18N
@@ -488,15 +481,23 @@ public class HacerCotizacion extends javax.swing.JFrame {
                 btnPaquetesKeyPressed(evt);
             }
         });
-        jPanel4.add(btnPaquetes, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 120, 40));
+        jPanel4.add(btnPaquetes, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 110, 70));
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 390, 160, 160));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_rounded_rectangle_stroked_127px_1.png"))); // NOI18N
+        jLabel4.setText("jLabel2");
+        jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 120, 90));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_rounded_rectangle_stroked_127px_1.png"))); // NOI18N
+        jLabel6.setText("jLabel2");
+        jPanel4.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 120, 90));
+
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 390, 150, 250));
 
         jLabel20.setBackground(new java.awt.Color(103, 128, 159));
         jLabel20.setFont(new java.awt.Font("Gotham Thin", 0, 18)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(103, 128, 159));
         jLabel20.setText("Productos");
-        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 30, -1, -1));
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 30, -1, -1));
 
         btnVer.setBackground(new java.awt.Color(1, 50, 67));
         btnVer.setFont(new java.awt.Font("Gotham Extra Light", 0, 18)); // NOI18N
@@ -518,7 +519,34 @@ public class HacerCotizacion extends javax.swing.JFrame {
                 btnVerKeyPressed(evt);
             }
         });
-        jPanel1.add(btnVer, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 580, 120, 40));
+        jPanel1.add(btnVer, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 410, 100, 70));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/LOGOSAD200.png"))); // NOI18N
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 220, 90));
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_rounded_rectangle_stroked_127px_1.png"))); // NOI18N
+        jLabel9.setText("jLabel2");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 400, 120, 90));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_average_2_32px.png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, -1, -1));
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_list_32px.png"))); // NOI18N
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 138, -1, -1));
+
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_map_marker_32px.png"))); // NOI18N
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, -1, -1));
+
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_plus_math_32px.png"))); // NOI18N
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, -1, -1));
+
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_percentage_32px.png"))); // NOI18N
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 1230, 660));
 
@@ -606,13 +634,6 @@ public class HacerCotizacion extends javax.swing.JFrame {
         modificacion.setVisible(true);
         dispose();
     }
-
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        // TODO add your handling code here:
-        Menu menu = new Menu();
-        menu.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jLabel1MouseClicked
     
 
     private void tPaquetesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tPaquetesMouseClicked
@@ -796,6 +817,17 @@ public class HacerCotizacion extends javax.swing.JFrame {
     private void btnVerKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnVerKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnVerKeyPressed
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        // TODO add your handling code here:
+        Menu menu = new Menu();
+        menu.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void txtIvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIvaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIvaActionPerformed
     
     private void crear() {
         if (!haSidoCreado) {
@@ -956,16 +988,26 @@ public class HacerCotizacion extends javax.swing.JFrame {
     private javax.swing.JButton btnVer;
     private com.toedter.calendar.JDateChooser dateFecha;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -980,9 +1022,6 @@ public class HacerCotizacion extends javax.swing.JFrame {
     private javax.swing.JTable tPaquetes;
     private javax.swing.JTable tProductos;
     private javax.swing.JTextField txtDescripcion;
-    private javax.swing.JTextField txtId6;
-    private javax.swing.JTextField txtId7;
-    private javax.swing.JTextField txtId8;
     private javax.swing.JTextField txtIva;
     private javax.swing.JTextField txtLugar;
     private javax.swing.JTextField txtSubtotal;

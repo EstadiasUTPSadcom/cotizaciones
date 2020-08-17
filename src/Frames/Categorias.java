@@ -85,6 +85,9 @@ public class Categorias extends javax.swing.JFrame {
         tSubcategorias = new javax.swing.JTable();
         comboCategoria = new javax.swing.JComboBox<>();
         btnIngresar5 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -153,13 +156,13 @@ public class Categorias extends javax.swing.JFrame {
                 btnIngresar3KeyPressed(evt);
             }
         });
-        jPanel1.add(btnIngresar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 400, 110, 40));
+        jPanel1.add(btnIngresar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 460, 110, 70));
 
         jLabel17.setBackground(new java.awt.Color(103, 128, 159));
         jLabel17.setFont(new java.awt.Font("Gotham Thin", 0, 18)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(103, 128, 159));
         jLabel17.setText("Categorías");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, -1, -1));
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, -1, -1));
 
         tCategorias.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -168,7 +171,7 @@ public class Categorias extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tCategorias);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, 230, 360));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 40, 230, 490));
 
         btnIngresar4.setBackground(new java.awt.Color(1, 50, 67));
         btnIngresar4.setFont(new java.awt.Font("Gotham Extra Light", 0, 18)); // NOI18N
@@ -190,7 +193,7 @@ public class Categorias extends javax.swing.JFrame {
                 btnIngresar4KeyPressed(evt);
             }
         });
-        jPanel1.add(btnIngresar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 360, 110, 40));
+        jPanel1.add(btnIngresar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 360, 110, 70));
 
         txtSub.setBackground(new java.awt.Color(238, 238, 238));
         txtSub.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
@@ -206,20 +209,19 @@ public class Categorias extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, -1, -1));
 
-        jLabel1.setText("Atrás");
-        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/LOGOSAD200.png"))); // NOI18N
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 200, 70));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 220, 90));
 
         jLabel18.setBackground(new java.awt.Color(103, 128, 159));
         jLabel18.setFont(new java.awt.Font("Gotham Thin", 0, 18)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(103, 128, 159));
         jLabel18.setText("Subcategorias");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 0, -1, -1));
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, -1, -1));
 
         tSubcategorias.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -228,7 +230,7 @@ public class Categorias extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tSubcategorias);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 30, 230, 360));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 40, 230, 490));
 
         comboCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -257,9 +259,21 @@ public class Categorias extends javax.swing.JFrame {
                 btnIngresar5KeyPressed(evt);
             }
         });
-        jPanel1.add(btnIngresar5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 110, 40));
+        jPanel1.add(btnIngresar5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 110, 70));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 800, 460));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_rounded_rectangle_stroked_127px_1.png"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 450, 120, 90));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_rounded_rectangle_stroked_127px_1.png"))); // NOI18N
+        jLabel3.setText("jLabel2");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 120, 90));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_rounded_rectangle_stroked_127px_1.png"))); // NOI18N
+        jLabel4.setText("jLabel2");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 350, 120, 90));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 800, 560));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -548,7 +562,10 @@ public class Categorias extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;

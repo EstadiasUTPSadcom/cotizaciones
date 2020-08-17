@@ -34,7 +34,8 @@ public class pnlChangePass extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
         txtReNewPass = new javax.swing.JPasswordField();
-        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(232, 236, 241));
         setForeground(new java.awt.Color(232, 236, 241));
@@ -84,8 +85,11 @@ public class pnlChangePass extends javax.swing.JPanel {
         txtOldPass.setForeground(new java.awt.Color(1, 50, 67));
         txtOldPass.setBorder(null);
         add(txtOldPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 210, 30));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_user_32px.png"))); // NOI18N
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 30, 30));
 
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_password_32px.png"))); // NOI18N
         jLabel9.setText("i");
         add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 30, 30));
         add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 250, 10));
@@ -96,8 +100,9 @@ public class pnlChangePass extends javax.swing.JPanel {
         txtNewPass.setBorder(null);
         add(txtNewPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, 210, 30));
 
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_password_32px.png"))); // NOI18N
         jLabel10.setText("i");
-        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 30, 30));
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 380, 30, 30));
 
         jLabel5.setBackground(new java.awt.Color(189, 195, 199));
         jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -116,8 +121,14 @@ public class pnlChangePass extends javax.swing.JPanel {
         txtReNewPass.setBorder(null);
         add(txtReNewPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 380, 210, 30));
 
-        jLabel11.setText("i");
-        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, 30, 30));
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_password_32px.png"))); // NOI18N
+        jLabel12.setText("i");
+        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 30, 30));
+
+        jLabel7.setBackground(new java.awt.Color(189, 195, 199));
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_rectangular_127px_1.png"))); // NOI18N
+        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 440, 120, 90));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
@@ -172,12 +183,13 @@ public class pnlChangePass extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;

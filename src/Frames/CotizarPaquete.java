@@ -112,6 +112,11 @@ public class CotizarPaquete extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tBusqueda = new javax.swing.JTable();
         btnAgregar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -152,7 +157,7 @@ public class CotizarPaquete extends javax.swing.JFrame {
         jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 140, -1, -1));
 
         jSeparator16.setBackground(new java.awt.Color(1, 50, 67));
-        jPanel1.add(jSeparator16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 370, 10));
+        jPanel1.add(jSeparator16, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 370, 10));
 
         jSeparator18.setBackground(new java.awt.Color(1, 50, 67));
         jPanel1.add(jSeparator18, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 200, 170, 10));
@@ -161,7 +166,7 @@ public class CotizarPaquete extends javax.swing.JFrame {
         jLabel33.setFont(new java.awt.Font("Gotham Thin", 0, 18)); // NOI18N
         jLabel33.setForeground(new java.awt.Color(103, 65, 114));
         jLabel33.setText("Buscar");
-        jPanel1.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+        jPanel1.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
         btnEliminar.setBackground(new java.awt.Color(1, 50, 67));
         btnEliminar.setFont(new java.awt.Font("Gotham Extra Light", 0, 18)); // NOI18N
@@ -183,7 +188,7 @@ public class CotizarPaquete extends javax.swing.JFrame {
                 btnEliminarKeyPressed(evt);
             }
         });
-        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 570, 110, 40));
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 550, 90, 70));
 
         jLabel17.setBackground(new java.awt.Color(103, 128, 159));
         jLabel17.setFont(new java.awt.Font("Gotham Thin", 0, 18)); // NOI18N
@@ -198,7 +203,7 @@ public class CotizarPaquete extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(TAgregados);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 340, 440));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, 340, 430));
 
         btnGuardar.setBackground(new java.awt.Color(1, 50, 67));
         btnGuardar.setFont(new java.awt.Font("Gotham Extra Light", 0, 18)); // NOI18N
@@ -220,11 +225,12 @@ public class CotizarPaquete extends javax.swing.JFrame {
                 btnGuardarKeyPressed(evt);
             }
         });
-        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 240, 110, 40));
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 240, 110, 70));
 
         txtSubtotal.setBackground(new java.awt.Color(238, 238, 238));
         txtSubtotal.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
         txtSubtotal.setForeground(new java.awt.Color(1, 50, 67));
+        txtSubtotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtSubtotal.setBorder(null);
         jPanel1.add(txtSubtotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 170, 140, 30));
 
@@ -242,7 +248,7 @@ public class CotizarPaquete extends javax.swing.JFrame {
                 txtBuscarKeyReleased(evt);
             }
         });
-        jPanel1.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 340, 30));
+        jPanel1.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, 330, 30));
 
         txtId6.setBackground(new java.awt.Color(238, 238, 238));
         txtId6.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
@@ -263,7 +269,7 @@ public class CotizarPaquete extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tBusqueda);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 370, 440));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 370, 430));
 
         btnAgregar.setBackground(new java.awt.Color(1, 50, 67));
         btnAgregar.setFont(new java.awt.Font("Gotham Extra Light", 0, 18)); // NOI18N
@@ -285,9 +291,27 @@ public class CotizarPaquete extends javax.swing.JFrame {
                 btnAgregarKeyPressed(evt);
             }
         });
-        jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 570, 110, 40));
+        jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 550, 100, 70));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 950, 620));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_rounded_rectangle_stroked_127px_1.png"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 230, 120, 90));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_rounded_rectangle_stroked_127px_1.png"))); // NOI18N
+        jLabel3.setText("jLabel2");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 540, 120, 90));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_rounded_rectangle_stroked_127px_1.png"))); // NOI18N
+        jLabel4.setText("jLabel2");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 540, 120, 90));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_search_32px.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 42, -1, 40));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_sigma_32px.png"))); // NOI18N
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 170, -1, 30));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 950, 640));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -601,10 +625,15 @@ public class CotizarPaquete extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

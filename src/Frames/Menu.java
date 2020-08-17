@@ -52,6 +52,7 @@ public class Menu extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_inscription_127px.png"))); // NOI18N
         jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -75,6 +76,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel6.setBackground(new java.awt.Color(51, 110, 123));
         jLabel6.setForeground(new java.awt.Color(51, 110, 123));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_exit_127px_1.png"))); // NOI18N
         jLabel6.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel6.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -120,6 +122,7 @@ public class Menu extends javax.swing.JFrame {
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 380, 180, 40));
 
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_categorize_127px.png"))); // NOI18N
         jLabel13.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jLabel13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel13.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -160,6 +163,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel9.setBackground(new java.awt.Color(51, 110, 123));
         jLabel9.setForeground(new java.awt.Color(51, 110, 123));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_view_127px.png"))); // NOI18N
         jLabel9.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel9.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -187,6 +191,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel10.setBackground(new java.awt.Color(51, 110, 123));
         jLabel10.setForeground(new java.awt.Color(51, 110, 123));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_trolley_127px.png"))); // NOI18N
         jLabel10.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel10.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -212,6 +217,7 @@ public class Menu extends javax.swing.JFrame {
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 380, 180, 40));
 
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_product_127px.png"))); // NOI18N
         jLabel17.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jLabel17.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel17.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -252,6 +258,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel11.setBackground(new java.awt.Color(51, 110, 123));
         jLabel11.setForeground(new java.awt.Color(51, 110, 123));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_staff_127px.png"))); // NOI18N
         jLabel11.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jLabel11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel11.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -282,6 +289,7 @@ public class Menu extends javax.swing.JFrame {
         jPanel2.setForeground(new java.awt.Color(52, 73, 94));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_multiply_30px.png"))); // NOI18N
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -290,6 +298,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 0, 38, 40));
 
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_minus_50px.png"))); // NOI18N
         jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

@@ -27,6 +27,15 @@ public class verCotizaciones extends javax.swing.JFrame {
         AWTUtilities.setWindowShape(this, forma);
         dateFecha.setDate(fecha);
         btnVer.setEnabled(false);
+        deshabilitarCampos();
+    }
+    
+    private void deshabilitarCampos(){
+        txtDescripcionF.setEditable(false);
+        txtSubtotal.setEditable(false);
+        txtTotal.setEditable(false);
+        txtIva.setEditable(false);
+        txtLugarF.setEditable(false);
     }
     
     @SuppressWarnings("unchecked")
@@ -34,11 +43,9 @@ public class verCotizaciones extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel45 = new javax.swing.JLabel();
         dateFecha = new com.toedter.calendar.JDateChooser();
         btnVer = new javax.swing.JButton();
-        jLabel12 = new javax.swing.JLabel();
         jLabel52 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jSeparator18 = new javax.swing.JSeparator();
@@ -67,6 +74,8 @@ public class verCotizaciones extends javax.swing.JFrame {
         txtId8 = new javax.swing.JTextField();
         jLabel33 = new javax.swing.JLabel();
         dateFechaF = new com.toedter.calendar.JDateChooser();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -78,27 +87,6 @@ public class verCotizaciones extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(129, 207, 224));
         jPanel1.setForeground(new java.awt.Color(129, 207, 224));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                jLabel2MouseDragged(evt);
-            }
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                jLabel2MouseMoved(evt);
-            }
-        });
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel2MouseExited(evt);
-            }
-        });
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 120, 120));
         jPanel1.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, -1, 50));
 
         dateFecha.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -106,7 +94,7 @@ public class verCotizaciones extends javax.swing.JFrame {
                 dateFechaPropertyChange(evt);
             }
         });
-        jPanel1.add(dateFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 150, 40));
+        jPanel1.add(dateFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 50, 150, 40));
 
         btnVer.setBackground(new java.awt.Color(1, 50, 67));
         btnVer.setFont(new java.awt.Font("Gotham Extra Light", 0, 18)); // NOI18N
@@ -128,23 +116,22 @@ public class verCotizaciones extends javax.swing.JFrame {
                 btnVerKeyPressed(evt);
             }
         });
-        jPanel1.add(btnVer, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 540, 110, 90));
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 540, 110, 90));
+        jPanel1.add(btnVer, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 520, 90, 70));
 
         jLabel52.setBackground(new java.awt.Color(103, 65, 114));
         jLabel52.setFont(new java.awt.Font("Gotham Thin", 0, 18)); // NOI18N
         jLabel52.setForeground(new java.awt.Color(103, 65, 114));
         jLabel52.setText("Fecha");
-        jPanel1.add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, -1, 20));
+        jPanel1.add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, -1, 20));
 
         jLabel21.setBackground(new java.awt.Color(103, 65, 114));
         jLabel21.setFont(new java.awt.Font("Gotham Thin", 0, 18)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(103, 65, 114));
         jLabel21.setText("Descripcion");
-        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, -1, -1));
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 30, -1, -1));
 
         jSeparator18.setBackground(new java.awt.Color(1, 50, 67));
-        jPanel1.add(jSeparator18, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 80, 270, 10));
+        jPanel1.add(jSeparator18, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 90, 240, 10));
 
         txtDescripcion.setBackground(new java.awt.Color(129, 207, 224));
         txtDescripcion.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
@@ -155,16 +142,16 @@ public class verCotizaciones extends javax.swing.JFrame {
                 txtDescripcionKeyReleased(evt);
             }
         });
-        jPanel1.add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 50, 240, 30));
+        jPanel1.add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 60, 210, 30));
 
         jLabel22.setBackground(new java.awt.Color(103, 65, 114));
         jLabel22.setFont(new java.awt.Font("Gotham Thin", 0, 18)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(103, 65, 114));
         jLabel22.setText("Lugar");
-        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 20, -1, -1));
+        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 30, -1, -1));
 
         jSeparator19.setBackground(new java.awt.Color(1, 50, 67));
-        jPanel1.add(jSeparator19, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 80, 290, 10));
+        jPanel1.add(jSeparator19, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 90, 230, 10));
 
         txtLugar.setBackground(new java.awt.Color(129, 207, 224));
         txtLugar.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
@@ -175,7 +162,7 @@ public class verCotizaciones extends javax.swing.JFrame {
                 txtLugarKeyReleased(evt);
             }
         });
-        jPanel1.add(txtLugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 50, 260, 30));
+        jPanel1.add(txtLugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 60, 200, 30));
 
         tCotizaciones.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -184,25 +171,25 @@ public class verCotizaciones extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tCotizaciones);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 560, 490));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 560, 500));
 
         jLabel16.setBackground(new java.awt.Color(103, 65, 114));
         jLabel16.setFont(new java.awt.Font("Gotham Thin", 0, 18)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(103, 65, 114));
         jLabel16.setText("Descripción");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 140, -1, -1));
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 130, -1, -1));
 
         jLabel23.setBackground(new java.awt.Color(103, 65, 114));
         jLabel23.setFont(new java.awt.Font("Gotham Thin", 0, 18)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(103, 65, 114));
         jLabel23.setText("Subtotal");
-        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 240, -1, -1));
+        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 230, -1, -1));
 
         jSeparator17.setBackground(new java.awt.Color(1, 50, 67));
-        jPanel1.add(jSeparator17, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 200, 350, 10));
+        jPanel1.add(jSeparator17, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 190, 350, 10));
 
         jSeparator20.setBackground(new java.awt.Color(1, 50, 67));
-        jPanel1.add(jSeparator20, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 300, 160, 10));
+        jPanel1.add(jSeparator20, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 290, 160, 10));
 
         txtSubtotal.setBackground(new java.awt.Color(129, 207, 224));
         txtSubtotal.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
@@ -213,7 +200,7 @@ public class verCotizaciones extends javax.swing.JFrame {
                 txtSubtotalActionPerformed(evt);
             }
         });
-        jPanel1.add(txtSubtotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 270, 130, 30));
+        jPanel1.add(txtSubtotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 260, 130, 30));
 
         txtDescripcionF.setBackground(new java.awt.Color(129, 207, 224));
         txtDescripcionF.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
@@ -224,31 +211,31 @@ public class verCotizaciones extends javax.swing.JFrame {
                 txtDescripcionFKeyReleased(evt);
             }
         });
-        jPanel1.add(txtDescripcionF, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 170, 320, 30));
+        jPanel1.add(txtDescripcionF, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 160, 320, 30));
 
         jLabel18.setBackground(new java.awt.Color(103, 65, 114));
         jLabel18.setFont(new java.awt.Font("Gotham Thin", 0, 18)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(103, 65, 114));
         jLabel18.setText("Negocio o familia");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 430, -1, -1));
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 420, -1, -1));
 
         jLabel24.setBackground(new java.awt.Color(103, 65, 114));
         jLabel24.setFont(new java.awt.Font("Gotham Thin", 0, 18)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(103, 65, 114));
         jLabel24.setText("Total");
-        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 330, -1, -1));
+        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 320, -1, -1));
 
         jSeparator21.setBackground(new java.awt.Color(1, 50, 67));
-        jPanel1.add(jSeparator21, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 490, 350, 10));
+        jPanel1.add(jSeparator21, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 480, 350, 10));
 
         jSeparator22.setBackground(new java.awt.Color(1, 50, 67));
-        jPanel1.add(jSeparator22, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 390, 170, 10));
+        jPanel1.add(jSeparator22, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 380, 170, 10));
 
         txtTotal.setBackground(new java.awt.Color(129, 207, 224));
         txtTotal.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
         txtTotal.setForeground(new java.awt.Color(1, 50, 67));
         txtTotal.setBorder(null);
-        jPanel1.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 360, 140, 30));
+        jPanel1.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 350, 140, 30));
 
         txtLugarF.setBackground(new java.awt.Color(129, 207, 224));
         txtLugarF.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
@@ -264,22 +251,22 @@ public class verCotizaciones extends javax.swing.JFrame {
                 txtLugarFKeyReleased(evt);
             }
         });
-        jPanel1.add(txtLugarF, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 460, 320, 30));
+        jPanel1.add(txtLugarF, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 450, 320, 30));
 
         txtId7.setBackground(new java.awt.Color(238, 238, 238));
         txtId7.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
         txtId7.setForeground(new java.awt.Color(1, 50, 67));
         txtId7.setBorder(null);
-        jPanel1.add(txtId7, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 360, 140, 30));
+        jPanel1.add(txtId7, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 350, 140, 30));
 
         jLabel25.setBackground(new java.awt.Color(103, 65, 114));
         jLabel25.setFont(new java.awt.Font("Gotham Thin", 0, 18)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(103, 65, 114));
         jLabel25.setText("I.V.A.");
-        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 330, -1, -1));
+        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 320, -1, -1));
 
         jSeparator23.setBackground(new java.awt.Color(1, 50, 67));
-        jPanel1.add(jSeparator23, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 390, 170, 10));
+        jPanel1.add(jSeparator23, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 380, 170, 10));
 
         txtIva.setBackground(new java.awt.Color(129, 207, 224));
         txtIva.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
@@ -290,19 +277,19 @@ public class verCotizaciones extends javax.swing.JFrame {
                 txtIvaKeyReleased(evt);
             }
         });
-        jPanel1.add(txtIva, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 360, 140, 30));
+        jPanel1.add(txtIva, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 350, 140, 30));
 
         txtId8.setBackground(new java.awt.Color(238, 238, 238));
         txtId8.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
         txtId8.setForeground(new java.awt.Color(1, 50, 67));
         txtId8.setBorder(null);
-        jPanel1.add(txtId8, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 360, 140, 30));
+        jPanel1.add(txtId8, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 350, 140, 30));
 
         jLabel33.setBackground(new java.awt.Color(103, 65, 114));
         jLabel33.setFont(new java.awt.Font("Gotham Thin", 0, 18)); // NOI18N
         jLabel33.setForeground(new java.awt.Color(103, 65, 114));
         jLabel33.setText("Fecha");
-        jPanel1.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 240, -1, -1));
+        jPanel1.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 230, -1, -1));
 
         dateFechaF.addContainerListener(new java.awt.event.ContainerAdapter() {
             public void componentAdded(java.awt.event.ContainerEvent evt) {
@@ -327,7 +314,19 @@ public class verCotizaciones extends javax.swing.JFrame {
                 dateFechaFPropertyChange(evt);
             }
         });
-        jPanel1.add(dateFechaF, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 270, 170, 30));
+        jPanel1.add(dateFechaF, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 260, 170, 30));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/LOGOSAD200.png"))); // NOI18N
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 220, 90));
+
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_rounded_rectangle_stroked_127px_1.png"))); // NOI18N
+        jLabel14.setText("jLabel2");
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 510, 130, 90));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 1000, 660));
 
@@ -357,25 +356,6 @@ public class verCotizaciones extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jLabel2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseDragged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel2MouseDragged
-
-    private void jLabel2MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseMoved
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel2MouseMoved
-
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        // TODO add your handling code here:
-        Menu menu = new Menu();
-        menu.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jLabel2MouseClicked
-
-    private void jLabel2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel2MouseExited
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:
@@ -484,6 +464,13 @@ public class verCotizaciones extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_dateFechaFPropertyChange
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        // TODO add your handling code here:
+        Menu menu = new Menu();
+        menu.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jLabel3MouseClicked
     
     private void llenar(){
     txtDescripcionF.setText(seleccionado.getDescripcion());
@@ -575,15 +562,15 @@ public class verCotizaciones extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser dateFecha;
     private com.toedter.calendar.JDateChooser dateFechaF;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel52;

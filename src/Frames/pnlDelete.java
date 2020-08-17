@@ -32,10 +32,11 @@ public class pnlDelete extends javax.swing.JPanel {
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         txtContraseña = new javax.swing.JPasswordField();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(232, 236, 241));
         setForeground(new java.awt.Color(232, 236, 241));
@@ -66,10 +67,6 @@ public class pnlDelete extends javax.swing.JPanel {
         txtContraseña.setForeground(new java.awt.Color(1, 50, 67));
         txtContraseña.setBorder(null);
         add(txtContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 210, 30));
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 30, 30));
-
-        jLabel9.setText("i");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 30, 30));
 
         jLabel3.setBackground(new java.awt.Color(1, 50, 67));
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 23)); // NOI18N
@@ -84,6 +81,18 @@ public class pnlDelete extends javax.swing.JPanel {
         });
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 110, 90));
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 290, 120, 90));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_user_32px.png"))); // NOI18N
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 30, 30));
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_password_32px.png"))); // NOI18N
+        jLabel9.setText("i");
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 30, 30));
+
+        jLabel5.setBackground(new java.awt.Color(189, 195, 199));
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_rectangular_127px_1.png"))); // NOI18N
+        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 290, 120, 90));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
@@ -132,6 +141,7 @@ public class pnlDelete extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;

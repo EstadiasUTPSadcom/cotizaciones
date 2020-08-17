@@ -104,12 +104,20 @@ public class Productos extends javax.swing.JFrame {
         txtDescripcion = new javax.swing.JTextField();
         txtId6 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         comboSubCat = new javax.swing.JComboBox<>();
         comboCategoria = new javax.swing.JComboBox<>();
         btnLimpiar = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -177,7 +185,7 @@ public class Productos extends javax.swing.JFrame {
         jLabel33.setFont(new java.awt.Font("Gotham Thin", 0, 18)); // NOI18N
         jLabel33.setForeground(new java.awt.Color(103, 65, 114));
         jLabel33.setText("Buscar");
-        jPanel1.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 30, -1, -1));
+        jPanel1.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, -1, -1));
 
         btnEliminar.setBackground(new java.awt.Color(1, 50, 67));
         btnEliminar.setFont(new java.awt.Font("Gotham Extra Light", 0, 18)); // NOI18N
@@ -199,7 +207,7 @@ public class Productos extends javax.swing.JFrame {
                 btnEliminarKeyPressed(evt);
             }
         });
-        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 490, 110, 40));
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 490, 110, 70));
 
         jLabel17.setBackground(new java.awt.Color(103, 128, 159));
         jLabel17.setFont(new java.awt.Font("Gotham Thin", 0, 18)); // NOI18N
@@ -214,7 +222,7 @@ public class Productos extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tDatos);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 100, 360, 440));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 90, 360, 410));
 
         btnIngresar4.setBackground(new java.awt.Color(1, 50, 67));
         btnIngresar4.setFont(new java.awt.Font("Gotham Extra Light", 0, 18)); // NOI18N
@@ -236,7 +244,7 @@ public class Productos extends javax.swing.JFrame {
                 btnIngresar4KeyPressed(evt);
             }
         });
-        jPanel1.add(btnIngresar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 490, 110, 40));
+        jPanel1.add(btnIngresar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 490, 110, 70));
 
         btnModificar.setBackground(new java.awt.Color(1, 50, 67));
         btnModificar.setFont(new java.awt.Font("Gotham Extra Light", 0, 18)); // NOI18N
@@ -258,19 +266,19 @@ public class Productos extends javax.swing.JFrame {
                 btnModificarKeyPressed(evt);
             }
         });
-        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 490, 110, 40));
+        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, 110, 70));
 
         txtImagen.setBackground(new java.awt.Color(238, 238, 238));
         txtImagen.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
         txtImagen.setForeground(new java.awt.Color(1, 50, 67));
         txtImagen.setBorder(null);
-        jPanel1.add(txtImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 420, 240, 30));
+        jPanel1.add(txtImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 420, 230, 30));
 
         txtPrecio.setBackground(new java.awt.Color(238, 238, 238));
         txtPrecio.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
         txtPrecio.setForeground(new java.awt.Color(1, 50, 67));
         txtPrecio.setBorder(null);
-        jPanel1.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, 140, 30));
+        jPanel1.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 190, 130, 30));
 
         txtId2.setEditable(false);
         txtId2.setBackground(new java.awt.Color(238, 238, 238));
@@ -293,13 +301,13 @@ public class Productos extends javax.swing.JFrame {
                 txtBuscarKeyReleased(evt);
             }
         });
-        jPanel1.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 50, 330, 30));
+        jPanel1.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 40, 320, 30));
 
         txtDescripcion.setBackground(new java.awt.Color(238, 238, 238));
         txtDescripcion.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
         txtDescripcion.setForeground(new java.awt.Color(1, 50, 67));
         txtDescripcion.setBorder(null);
-        jPanel1.add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 140, 30));
+        jPanel1.add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 130, 30));
 
         txtId6.setBackground(new java.awt.Color(238, 238, 238));
         txtId6.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
@@ -314,15 +322,6 @@ public class Productos extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 430, -1, -1));
-
-        jLabel1.setText("Atrás");
-        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
-            }
-        });
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 200, 70));
 
         jLabel23.setBackground(new java.awt.Color(103, 65, 114));
         jLabel23.setFont(new java.awt.Font("Gotham Thin", 0, 18)); // NOI18N
@@ -374,7 +373,43 @@ public class Productos extends javax.swing.JFrame {
                 btnLimpiarKeyPressed(evt);
             }
         });
-        jPanel1.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 560, 110, 40));
+        jPanel1.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 520, 100, 70));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/LOGOSAD200.png"))); // NOI18N
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 220, 90));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_search_32px.png"))); // NOI18N
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, -1, 30));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_list_32px.png"))); // NOI18N
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, 30));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_image_file_32px.png"))); // NOI18N
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, -1, 30));
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_average_2_32px.png"))); // NOI18N
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, -1, 30));
+
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_rounded_rectangle_stroked_127px_1.png"))); // NOI18N
+        jLabel11.setText("jLabel2");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 480, 130, 90));
+
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_rounded_rectangle_stroked_127px_1.png"))); // NOI18N
+        jLabel12.setText("jLabel2");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 480, 130, 90));
+
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_rounded_rectangle_stroked_127px_1.png"))); // NOI18N
+        jLabel13.setText("jLabel2");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 480, 130, 90));
+
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_rounded_rectangle_stroked_127px_1.png"))); // NOI18N
+        jLabel14.setText("jLabel2");
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 510, 130, 90));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 810, 620));
 
@@ -574,13 +609,6 @@ public class Productos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        // TODO add your handling code here:
-        Menu menu = new Menu();
-        menu.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jLabel1MouseClicked
-
     private void tDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tDatosMouseClicked
         // TODO add your handling code here:
         ProductoVO enTabla = obtenerElementoDePosicion(tDatos.getSelectedRow());
@@ -635,6 +663,13 @@ public class Productos extends javax.swing.JFrame {
             cargarTabla();
         }
     }//GEN-LAST:event_txtBuscarKeyReleased
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        // TODO add your handling code here:
+        Menu menu = new Menu();
+        menu.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jLabel3MouseClicked
 
     private void cargarBusqueda(){
             TablaProducto.cargarProductos(tDatos,txtBuscar.getText());
@@ -713,16 +748,24 @@ public class Productos extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboCategoria;
     private javax.swing.JComboBox<String> comboSubCat;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
